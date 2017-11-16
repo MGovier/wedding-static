@@ -1,0 +1,40 @@
+.text-center {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+
+.pad-after {
+  padding-bottom: 3em;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #fff;
+}
+
+nav.transparent .menu li {
+  opacity: 1;
+}
+
+.navbar-light .navbar-toggler {
+  background-color: #fff;
+}
+
+.story-1 {
+  box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.7);
+}
+
+.map-container {
+    position: relative;
+    overflow: hidden;
+}
+.map-container:before, .map-container:after, .map:before, .map:after {
+    content: '';
+    position: absolute;
+    box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.8);
+    z-index: 5;
+}
+.map-container:before { top: -5px; left: 0; right: 0; height: 5px; }
+.map-container:after { right: -5px; top: 0; bottom: 0; width: 5px; }
+
+.map:before { bottom: -5px; left: 0; right: 0; height: 5px; }
+.map:after { left: -5px; top: 0; bottom: 0; width: 5px; }

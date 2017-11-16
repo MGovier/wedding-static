@@ -1,0 +1,34 @@
+{
+  "name": "birgitandmerlin-static",
+  "description": "Gatsby-powered wedding information site for Birgit and Merlin 2018",
+  "version": "0.0.1",
+  "author": "Merlin Govier <merlin@govie.rs>",
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.2",
+    "dotenv": "^4.0.0",
+    "gatsby": "^1.9.114",
+    "gatsby-link": "^1.6.28",
+    "gatsby-plugin-react-helmet": "^1.0.8",
+    "moment": "^2.19.2",
+    "prop-types": "^15.6.0",
+    "react-google-maps": "^9.2.2",
+    "react-transition-group": "^2.2.1",
+    "reactstrap": "^5.0.0-alpha.4"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --no-semi --single-quote --write \"src/**/*.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "prettier": "^1.8.2",
+    "standard": "^10.0.3"
+  },
+  "private": true
+}
