@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
 class Header extends Component {
@@ -10,7 +9,7 @@ class Header extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     document.addEventListener('scroll', this.handleScroll)
   }
 
