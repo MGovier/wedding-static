@@ -40,6 +40,7 @@ class Header extends Component {
 
   render () {
     return (
+      // Navbar is functional, so need a wrapping plain DOM node to use ref, which is chosen over state for perf.
       <div className='nav-container' ref={(navbar) => { this.navbar = navbar }}>
         <Navbar id='nav-1' color='faded' light className='nav nav-1 transparent light' expand='md'>
           <NavbarBrand href='/' className='logo'>
@@ -54,8 +55,8 @@ class Header extends Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#accommodation' className='inner-link'>
-                  Accommodation
+                <NavLink href='#accomodation' className='inner-link'>
+                  Accomodation
                 </NavLink>
               </NavItem>
               <NavItem>

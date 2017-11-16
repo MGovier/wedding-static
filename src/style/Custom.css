@@ -19,6 +19,10 @@ nav.transparent .menu li {
   background-color: #fff;
 }
 
+p.address {
+  text-align: center;
+}
+
 .story-1 {
   box-shadow: 0 0 40px 3px rgba(0, 0, 0, 0.7);
 }

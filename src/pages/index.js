@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Couple from '../components/Couple'
 import Location from '../components/Location'
 import Venue from '../components/Venue'
+import LogIn from '../components/LogIn'
 import 'bootstrap/dist/css/bootstrap.css'
 import '../style/Theme.css'
 import '../style/Custom.css'
@@ -16,6 +17,7 @@ const IndexPage = () => (
       <Couple />
       <Location />
       <Venue />
+      <LogIn />
     </div>
   </div>
 )

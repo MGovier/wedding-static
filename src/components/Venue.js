@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { Row, Col, Container } from 'reactstrap'
 
 import eastington from '../img/eastington-park.jpg'
+import travelodge from '../img/travelodge-stonehouse.jpg'
+import kingsHead from '../img/kingshead.jpg'
 
 class Venue extends Component {
   render () {
     return (
-      <section className='accom'>
+      <section className='accom' id='accomodation'>
         <Container>
           <Row>
             <Col md={{ size: 8 }} sm={{ size: 10 }} className='text-center'>
@@ -14,11 +16,11 @@ class Venue extends Component {
               <h6>Where to be and where to stay...</h6>
             </Col>
           </Row>
-          <Row style={{ paddingTop: '5em' }}>
+          <Row style={{ paddingTop: '3em' }}>
             <Col sm={{ size: 4 }}>
               <img src={eastington} alt='Eastington Park' />
-              <h5 className='text-center'>Ceremony &amp; Reception</h5>
-              <p>Eastington Park,
+              <h5 className='text-center'>Ceremony, Reception &amp; Rooms...</h5>
+              <p className='address'><a href='http://www.eastingtonpark.co.uk/weddings/'>Eastington Park</a>,
                 <br />
                 Eastington,
                 <br />
@@ -29,12 +31,32 @@ class Venue extends Component {
                 GL10 3RY</p>
             </Col>
             <Col sm={{ size: 4 }}>
-              <h5 className='text-center'>Ceremony</h5>
-              <p>Address</p>
+              <img src={travelodge} alt='Travelodge Stonehouse' />
+              <h5 className='text-center'>Alternative Accomodation...</h5>
+              <p className='address'><a href='https://www.travelodge.co.uk/hotels/99/Stonehouse-hotel'>Travelodge Stonehouse</a>,
+                <br />
+                A419 Eastington,
+                <br />
+                Nr Stroud,
+                <br />
+                Gloucestershire
+                <br />
+                GL10 3SQ
+              </p>
             </Col>
             <Col sm={{ size: 4 }}>
-              <h5 className='text-center'>Ceremony</h5>
-              <p>Address</p>
+              <img src={kingsHead} alt='The Kings Head House' />
+              <h5 className='text-center'>Alternative Accomodation...</h5>
+              <p className='address'><a href='http://www.thekingsheadhouse.com/'>The King's Head</a>,
+                <br />
+                Bath Road,
+                <br />
+                Eastington,
+                <br />
+                Stonehouse,
+                <br />
+                GL10 3AA
+              </p>
             </Col>
           </Row>
         </Container>

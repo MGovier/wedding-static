@@ -23,7 +23,6 @@ class Couple extends Component {
           <Row>
             <Col md={{ size: 8 }} sm={{ size: 10 }} className='text-center'>
               <h2>Join us {this.getTimescale()} to celebrate our wedding!</h2>
-              <h6>A little about the bride and groom...</h6>
             </Col>
           </Row>
 
