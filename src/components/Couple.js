@@ -18,7 +18,7 @@ class Couple extends Component {
 
   render () {
     return (
-      <section className='story story-1'>
+      <section className='story'>
         <Container>
           <Row>
             <Col md={{ size: 8 }} sm={{ size: 10 }} className='text-center'>
@@ -28,13 +28,13 @@ class Couple extends Component {
 
           <Row className='justify-content-around'>
             <Col md={{ size: 4 }} sm={{ size: 6 }}>
-              <img alt='Portrait of Birgit' src={BirgitPortrait} style={{ transform: 'rotate(-3deg)' }} />
+              <img alt='Portrait of Birgit' className='birgy' src={BirgitPortrait} />
               <p>
                 Maybe some text here...
               </p>
             </Col>
             <Col md={{ size: 4 }} sm={{ size: 6 }}>
-              <img alt='Portrait of Merlin' src={MerlinPortrait} style={{ transform: 'rotate(4deg)' }} />
+              <img alt='Portrait of Merlin' className='merly' src={MerlinPortrait} />
               <p>
                 Maybe some text here...
               </p>

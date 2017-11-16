@@ -1,7 +1,8 @@
 import React from 'react'
-import Header from '../components/Header'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 const TemplateWrapper = ({ children, data }) => (
   <div>
@@ -14,6 +15,7 @@ const TemplateWrapper = ({ children, data }) => (
     />
     <Header />
     { children() }
+    <Footer />
   </div>
 )
 
