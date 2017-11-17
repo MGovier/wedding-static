@@ -55,8 +55,8 @@ class Header extends Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#accomodation' className='inner-link'>
-                  Accomodation
+                <NavLink href='#accommodation' className='inner-link'>
+                  Accommodation
                 </NavLink>
               </NavItem>
               <NavItem>

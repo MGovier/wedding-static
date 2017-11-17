@@ -1,0 +1,23 @@
+{
+  "name": "wedding-server",
+  "version": "0.0.1",
+  "description": "Birgit and Merlin 2018 API Server",
+  "main": "index.js",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "level": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "standard": "^10.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Merlin Govier <merlin@govie.rs>",
+  "license": "MIT",
+  "private": true,
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
