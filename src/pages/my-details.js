@@ -13,7 +13,6 @@ class MyDetails extends Component {
       </div>
     )
   }
-
 }
 
 export default MyDetails
