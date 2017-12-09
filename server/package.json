@@ -5,6 +5,9 @@
   "main": "app/index.js",
   "dependencies": {
     "koa": "^2.4.1",
+    "koa-body": "^2.5.0",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.3.0",
     "level": "^2.1.0"
   },
   "devDependencies": {

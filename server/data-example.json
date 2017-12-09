@@ -1,0 +1,41 @@
+{
+    "menu": {
+        "mains": [
+            {
+                "summary": "Chicken and Chips",
+                "description": "Succulent mechanically recovered meat substitute with potato-inspired chips."
+            },
+            {
+                "summary": "A Vegetable",
+                "description": "One random vegetable, potentially cooked!"
+            }
+        ],
+        "desserts": [
+            {
+                "summary": "Frozen Onions",
+                "description": "On a stick."
+            },
+            {
+                "summary": "Chocolate on Horseradish",
+                "description": "A taste sensation! This would potentially have a longer description. Gluten-free, available in 4 colours."
+            }
+        ]
+    },
+    "guests": [
+        {
+            "code": "FRIDGELLAMA",
+            "name": "Merlin and Birgit",
+            "couple": true,
+            "eveningOnly": false
+        },
+        {
+            "code": "CATCRAYONS",
+            "name": "John and Jim",
+            "couple": true,
+            "eveningOnly": true
+        }
+    ],
+    "keys": [
+        "Whatanexample!"
+    ]
+}
