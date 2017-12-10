@@ -1,4 +1,7 @@
 const level = require('level')
+const sgMail = require('@sendgrid/mail')
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const config = require('../data-example.json')
 
 const db = level('./data.db')
@@ -19,16 +22,20 @@ async function authenticate (ctx, next) {
     signed: true,
     httpOnly: true,
     overwrite: true,
+    // Helps prevent any CSRF:
     sameSite: true
   })
   await next()
 }
 
 async function info (ctx, next) {
+  // Get up to date information from DB
   await next()
 }
 
 async function update (ctx, next) {
+  // Update this users information
+  // Dispatch new email (but debounce with a massive timeout)
   await next()
 }
 
