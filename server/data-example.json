@@ -24,15 +24,21 @@
     "guests": [
         {
             "code": "FRIDGELLAMA",
-            "name": "Merlin and Birgit",
+            "names": ["Merlin", "Birgit"],
             "couple": true,
             "eveningOnly": false
         },
         {
             "code": "CATCRAYONS",
-            "name": "John and Jim",
+            "name": ["John", "Jim"],
             "couple": true,
             "eveningOnly": true
+        },
+        {
+            "code": "SEMAPHOREONION",
+            "name": ["Bob"],
+            "couple": false,
+            "eveningOnly": false
         }
     ],
     "keys": [

@@ -1,9 +1,13 @@
 const sgMail = require('@sendgrid/mail')
 const crypto = require('crypto')
+const Redis = require('ioredis')
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setSubstitutionWrappers('{{', '}}')
+
 const cookieKey = Buffer.from(process.env.COOKIE_ENCRYPTION_KEY, 'hex')
 const config = require('../data-example.json')
+const db = new Redis()
 
 async function authenticate (ctx, next) {
   if (!ctx.request.body.hasOwnProperty('code')) {
@@ -22,23 +26,68 @@ async function authenticate (ctx, next) {
     httpOnly: true,
     overwrite: true,
     // Helps prevent any CSRF:
-    sameSite: true
+    sameSite: 'strict'
   })
   await next()
 }
 
 async function info (ctx, next) {
-  // Get up to date information from DB
-  ctx.body = await ctx.state.guest
+  // Get static info from config along with any DB info.
+  const staticInfo = await ctx.state.guest
+  const guestInfo = {
+    eveningOnly: staticInfo.eveningOnly,
+    name: staticInfo.name,
+    couple: staticInfo.couple
+  }
+  const dbInfo = await db.get(ctx.state.guest.code)
+  if (dbInfo !== null) {
+    guestInfo.rsvpStatus = dbInfo.rsvpInfo
+    guestInfo.menuChoices = dbInfo.menuChoices
+  } else {
+    guestInfo.undecided = true
+  }
+  ctx.body = guestInfo
   await next()
 }
 
 async function update (ctx, next) {
-  if (!ctx.request.body.hasOwnProperty('code')) {
-    ctx.throw(400)
+  // Check we have RSVP and menu choices!
+  const staticInfo = await ctx.state.guest
+  let template
+  const dbInfo = {
+    rsvp: true,
+    menuChoices: {
+      Joe: {
+        main: 'aaargh',
+        dessert: 'noooooo'
+      }
+    }
   }
-  // Update this users information
-  // Dispatch new email (but debounce with a massive timeout)
+  db.set(staticInfo.code, JSON.stringify(dbInfo))
+  let rsvpStatus = true
+  if (rsvpStatus && staticInfo.couple) {
+    template = '7488fb6f-70a1-4523-a7ff-378bf0f3e5ab'
+  } else if (rsvpStatus) {
+    template = '99dd386d-c213-46e8-a744-a2fac90a4450'
+  } else if (!rsvpStatus) {
+    template = 'b2c0ffb2-38cb-42f3-a2fe-6b164ee1e9df'
+  }
+  const msg = {
+    to: 'merlin@govie.rs',
+    from: 'us@birgitandmerlin.com',
+    templateId: template,
+    substitutions: {
+      name: 'Birgit and Merlin',
+      guest1: 'Birgit',
+      guest1_main: 'Onions',
+      guest1_dessert: 'More Onions... Weird.',
+      guest2: 'Merlin',
+      guest2_main: 'Onions',
+      guest2_dessert: 'More Onions... Weird.'
+    }
+  }
+  await sgMail.send(msg)
+  ctx.body = 'Got it!'
   await next()
 }
 
