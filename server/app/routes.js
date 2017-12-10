@@ -2,7 +2,7 @@ const Router = require('koa-router')
 const KoaBody = require('koa-body')
 const rateLimit = require('koa-ratelimit')
 const Redis = require('ioredis')
-const { info, update, authenticate } = require('./api')
+const { info, update, authenticate, cookieCheck } = require('./api')
 
 const router = new Router({
   prefix: '/api'
@@ -24,9 +24,9 @@ const rateLimiter = rateLimit({
 })
 
 router
-  .get('/info', info)
+  .get('/info', cookieCheck, info)
   .post('/auth', rateLimiter, bodyParser, authenticate)
-  .post('/info', bodyParser, update)
+  .post('/info', cookieCheck, bodyParser, update)
 
 module.exports = {
   routes () { return router.routes() },
