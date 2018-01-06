@@ -16,47 +16,39 @@ class Venue extends Component {
               <h6>Where to be and where to stay...</h6>
             </Col>
           </Row>
-          <Row style={{ paddingTop: '3em' }}>
-            <Col sm={{ size: 4 }}>
-              <img src={eastington} alt='Eastington Park' />
+          <Row style={{ paddingTop: '3em' }} className='align-items-center'>
+            <Col md='4' xs='6'>
+              <img src={eastington} className='img-fluid' alt='Eastington Park' />
               <h5 className='text-center'>Ceremony, Reception &amp; Rooms...</h5>
-              <p className='address'><a href='http://www.eastingtonpark.co.uk/weddings/'>Eastington Park</a>,
-                <br />
-                Eastington,
-                <br />
-                Nr Stonehouse,
-                <br />
-                Gloucestershire
-                <br />
-                GL10 3RY</p>
+              <address>
+                <a href='http://www.eastingtonpark.co.uk/weddings/'>Eastington Park</a>,<br />
+                Eastington,<br />
+                Nr Stonehouse,<br />
+                Gloucestershire<br />
+                GL10 3RY
+              </address>
             </Col>
-            <Col sm={{ size: 4 }}>
-              <img src={travelodge} alt='Travelodge Stonehouse' />
+            <Col md='4' xs='6'>
+              <img src={travelodge} className='img-fluid' alt='Travelodge Stonehouse' />
               <h5 className='text-center'>Alternative Accommodation...</h5>
-              <p className='address'><a href='https://www.travelodge.co.uk/hotels/99/Stonehouse-hotel'>Travelodge Stonehouse</a>,
-                <br />
-                A419 Eastington,
-                <br />
-                Nr Stroud,
-                <br />
-                Gloucestershire
-                <br />
+              <address>
+                <a href='https://www.travelodge.co.uk/hotels/99/Stonehouse-hotel'>Travelodge Stonehouse</a>,<br />
+                A419 Eastington,<br />
+                Nr Stroud,<br />
+                Gloucestershire<br />
                 GL10 3SQ
-              </p>
+              </address>
             </Col>
-            <Col sm={{ size: 4 }}>
-              <img src={kingsHead} alt='The Kings Head House' />
+            <Col md={{ size: 4, offset: 0 }} xs={{ size: 6, offset: 3 }}>
+              <img src={kingsHead} className='img-fluid mx-auto' alt='The Kings Head House' />
               <h5 className='text-center'>Alternative Accommodation...</h5>
-              <p className='address'><a href='http://www.thekingsheadhouse.com/'>The King's Head</a>,
-                <br />
-                Bath Road,
-                <br />
-                Eastington,
-                <br />
-                Stonehouse,
-                <br />
+              <address>
+                <a href='http://www.thekingsheadhouse.com/'>The King's Head</a>,<br />
+                Bath Road,<br />
+                Eastington,<br />
+                Stonehouse,<br />
                 GL10 3AA
-              </p>
+              </address>
             </Col>
           </Row>
         </Container>

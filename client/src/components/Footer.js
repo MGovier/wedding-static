@@ -8,7 +8,7 @@ class Footer extends Component {
         <Container>
           <Row>
             <Col md={{ size: 6 }}>
-              <h6>Birgit + Merlin 2017</h6>
+              <h6>Birgit + Merlin 2018</h6>
             </Col>
             <Col md={{ size: 6 }}>
               <p><a href='https://github.com/MGovier/wedding-static'>GitHub</a></p>

@@ -3,6 +3,12 @@
   max-width: 100% !important;
 }
 
+@media all and (max-width: 767px) {
+  .text-center-if-small {
+    text-align: center;
+  }
+}
+
 .pad-after {
   padding-bottom: 3em;
 }
@@ -19,7 +25,7 @@ nav.transparent .menu li {
   background-color: #fff;
 }
 
-p.address {
+address {
   text-align: center;
 }
 

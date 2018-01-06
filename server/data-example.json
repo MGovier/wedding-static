@@ -24,7 +24,7 @@
     "guests": [
         {
             "code": "FRIDGELLAMA",
-            "names": ["Merlin", "Birgit"],
+            "name": ["Merlin", "Birgit"],
             "couple": true,
             "eveningOnly": false
         },

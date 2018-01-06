@@ -22,22 +22,22 @@ class Couple extends Component {
         <Container>
           <Row>
             <Col md={{ size: 8 }} sm={{ size: 10 }} className='text-center'>
-              <h2>Join us {this.getTimescale()} to celebrate our wedding</h2>
+              <h3>Join us {this.getTimescale()} to celebrate our wedding</h3>
             </Col>
           </Row>
           <Row className='justify-content-around'>
-            <Col md={{ size: 3 }} sm={{ size: 6 }}>
+            <Col md={{ size: 3 }} xs={{ size: 8 }}>
               <p style={{textAlign: 'right', verticalAlign: 'middle'}}>
                 Maybe some text here...
               </p>
             </Col>
-            <Col md={{ size: 3 }} sm={{ size: 8 }}>
+            <Col md={{ size: 3 }} xs={{ size: 6 }}>
               <img alt='Portrait of Birgit' className='birgy' src={BirgitPortrait} />
             </Col>
-            <Col md={{ size: 3 }} sm={{ size: 8 }}>
+            <Col md={{ size: 3 }} xs={{ size: 6 }}>
               <img alt='Portrait of Merlin' className='merly' src={MerlinPortrait} />
             </Col>
-            <Col md={{ size: 3 }} sm={{ size: 6 }}>
+            <Col md={{ size: 3 }} xs={{ size: 8 }}>
               <p>
                 Maybe some text here...
               </p>
