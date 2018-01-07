@@ -10,7 +10,7 @@ const TemplateWrapper = ({ children, data }) => (
       title='Birgit and Merlin 2018'
       meta={[
         { name: 'description', content: 'Information for Birgit and Merlin Wedding October 2018' },
-        { name: 'keywords', content: 'eastington, wedding, birgit, merlin, govier' },
+        { name: 'keywords', content: 'eastington, wedding, birgit, merlin, govier' }
       ]}
     />
     <Header />
