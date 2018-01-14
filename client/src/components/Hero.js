@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Img from 'gatsby-image'
 
 class Hero extends Component {
   runAnimation () {
@@ -85,8 +86,10 @@ class Hero extends Component {
   }
 
   render () {
+    console.log(this.props)
     return (
-      <section className='header header-1 background-image'>
+      <section className='header header-1'>
+        <Img sizes={this.props.image.sizes} className='background-image' />
         <div className='container'>
           <div className='row'>
             <div className='text-center col-sm-11'>
