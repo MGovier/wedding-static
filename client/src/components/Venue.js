@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col, Container } from 'reactstrap'
 
-import eastington from '../img/eastington-park.jpg'
-import travelodge from '../img/travelodge-stonehouse.jpg'
-import kingsHead from '../img/kingshead.jpg'
+import eastington from '../img/eastington-park-min.jpg'
+import travelodge from '../img/travelodge-stonehouse-min.jpg'
+import kingsHead from '../img/kingshead-min.jpg'
 
 class Venue extends Component {
   render () {

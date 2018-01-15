@@ -3,8 +3,8 @@ import { Container, Row, Col } from 'reactstrap'
 import moment from 'moment'
 import 'moment/locale/en-gb'
 
-import MerlinPortrait from '../img/merlin-portrait.jpg'
-import BirgitPortrait from '../img/birgit-portrait.jpg'
+import MerlinPortrait from '../img/merlin-min.jpg'
+import BirgitPortrait from '../img/bir-min.jpg'
 
 class Couple extends Component {
   constructor () {

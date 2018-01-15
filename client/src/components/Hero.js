@@ -3,36 +3,35 @@ import Img from 'gatsby-image'
 
 class Hero extends Component {
   runAnimation () {
-    var Confetti, confetti, drawCircle, range, resizeWindow, step
-    const NUM_CONFETTI = 100
-    const COLORS = [[85, 71, 106], [174, 61, 99]]
+    const NUM_CONFETTI = 80
+    const COLOURS = ['99,00,00', 'FF,66,00', 'FF,99,00', '99,66,33', 'CC,99,66']
     const canvas = document.getElementById('header-animation')
     const context = canvas.getContext('2d')
     let width = canvas.width
     let height = canvas.height
 
-    resizeWindow = () => {
+    const resizeWindow = () => {
       width = canvas.width
       height = canvas.height
     }
 
     window.addEventListener('resize', resizeWindow, false)
 
-    range = function (a, b) {
-      return (b - a) * Math.random() + a
+    function range (min, max) {
+      return Math.random() * (max - min) + min
     }
 
-    drawCircle = function (x, y, r, style) {
+    function drawCircle (x, y, r, style) {
       context.beginPath()
       context.arc(x, y, r, 0, 2 * Math.PI, false)
       context.fillStyle = style
       context.fill()
     }
 
-    Confetti = class Confetti {
+    class Confetti {
       constructor () {
-        this.style = COLORS[1]
-        this.rgb = `rgba(${this.style[0]},${this.style[1]},${this.style[2]}`
+        this.style = COLOURS[Math.floor(range(0, COLOURS.length))]
+        this.rgb = `rgba(${this.style}`
         this.r = range(0.4, 1.5)
         this.r2 = 2 * this.r
         this.replace()
@@ -41,25 +40,26 @@ class Hero extends Component {
       replace () {
         this.opacity = 0.8
         this.x = range(-this.r2, width - this.r2)
-        this.y = range(-20, height - this.r2)
+        this.y = range(-this.r2, height - this.r2 / 2)
         this.xmax = width - this.r
         this.ymax = height - this.r
       }
 
       draw () {
-        this.x += 1
-        this.y += 2
+        this.x += range(0, 0.8)
+        this.y += range(1, 2)
+        this.opacity += range(-0.05, 0.05)
         if (this.opacity > 1) {
           this.opacity = 1
         }
         if (this.opacity < 0 || this.y > this.ymax) {
           this.replace()
         }
-        return drawCircle(this.x, this.y, this.r, `${this.rgb},${this.opacity})`)
+        drawCircle(this.x, this.y, this.r, `${this.rgb},${this.opacity})`)
       }
     }
 
-    confetti = (function () {
+    const confetti = (function () {
       const results = []
       for (let i = 0; i < NUM_CONFETTI; i++) {
         results.push(new Confetti())
@@ -67,16 +67,12 @@ class Hero extends Component {
       return results
     })()
 
-    step = function () {
-      var c, j, len, results
-      window.requestAnimationFrame(step)
+    function step () {
       context.clearRect(0, 0, width, height)
-      results = []
-      for (j = 0, len = confetti.length; j < len; j++) {
-        c = confetti[j]
-        results.push(c.draw())
+      for (let j = 0; j < confetti.length; j++) {
+        confetti[j].draw()
       }
-      return results
+      window.requestAnimationFrame(step)
     }
     step()
   }
@@ -86,7 +82,6 @@ class Hero extends Component {
   }
 
   render () {
-    console.log(this.props)
     return (
       <section className='header header-1'>
         <Img sizes={this.props.image.sizes} className='background-image' />

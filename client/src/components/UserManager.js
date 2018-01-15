@@ -6,7 +6,7 @@ class UserManager extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      loggedIn: true,
+      loggedIn: false,
       name: ['Lucy', 'Shannon'],
       coming: false
     }
@@ -19,8 +19,7 @@ class UserManager extends Component {
     return (
       <div>
         <div className='main-container'>
-
-          <LogIn loggedIn={this.state.loggedIn} name={this.state.name} />
+          <LogIn loggedIn={this.state.loggedIn} name={this.state.name} image={this.props.image} />
           { extraContent }
         </div>
       </div>

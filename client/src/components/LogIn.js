@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Input, Button } from 'reactstrap'
+import Img from 'gatsby-image'
 
 class LogIn extends Component {
   friendlyNames = () => {
@@ -12,6 +13,7 @@ class LogIn extends Component {
     if (this.props.loggedIn) {
       return (
         <section id='rsvp' className='rsvp'>
+          <Img sizes={this.props.image.sizes} className='background-image' />
           <Container>
             <Row className='justify-content-center'>
               <Col className='align-self-center text-center-if-small' sm={{ size: 9 }} xs={{ size: 12 }}>
@@ -29,6 +31,7 @@ class LogIn extends Component {
     }
     return (
       <section id='rsvp' className='rsvp'>
+        <Img sizes={this.props.image.sizes} className='background-image' />
         <Container>
           <Row>
             <Col md={{ size: 8 }} sm={{ size: 10 }} className='text-center'>
