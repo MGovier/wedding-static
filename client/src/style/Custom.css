@@ -60,3 +60,13 @@ address {
 
 .map:before { bottom: -5px; left: 0; right: 0; height: 5px; }
 .map:after { left: -5px; top: 0; bottom: 0; width: 5px; }
+
+.rsvp:before, .rsvp:after {
+  content: '';
+  position: absolute;
+  box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.8);
+  z-index: 5;
+}
+
+.rsvp:before { bottom: -5px; left: 0; right: 0; height: 5px; }
+.rsvp:after { left: -5px; top: 0; bottom: 0; width: 5px; }

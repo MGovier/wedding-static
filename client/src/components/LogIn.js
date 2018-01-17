@@ -48,7 +48,7 @@ class LogIn extends Component {
             </Col>
             <Col xs={{ size: 12 }} md='2'>
               <Button color='primary' block>
-                Go 🎉
+                Go
               </Button>
             </Col>
           </Row>

@@ -8,7 +8,10 @@ import Location from '../components/Location'
 import Venue from '../components/Venue'
 import Footer from '../components/Footer'
 
-const TemplateWrapper = ({ children, data }) => (
+import '../components/i18n'
+import { translate } from 'react-i18next'
+
+const TemplateWrapper = ({ children, data, i18n }) => (
   <div>
     <Helmet
       title={data.site.siteMetadata.title}
@@ -17,7 +20,7 @@ const TemplateWrapper = ({ children, data }) => (
         { name: 'keywords', content: 'eastington, wedding, birgit, merlin, govier' }
       ]}
     />
-    <Header />
+    <Header changeEn={() => i18n.changeLanguage('en')} changeNl={() => i18n.changeLanguage('nl')} language={i18n.language} />
     <Hero image={data.heroImage} />
     <Couple />
     <Location />
@@ -32,7 +35,7 @@ TemplateWrapper.propTypes = {
   data: PropTypes.object
 }
 
-export default TemplateWrapper
+export default translate('translations')(TemplateWrapper)
 
 export const query = graphql`
   query AboutQuery {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import Img from 'gatsby-image'
+import { translate } from 'react-i18next'
 
 class Hero extends Component {
   runAnimation () {
-    const NUM_CONFETTI = 80
+    const NUM_CONFETTI = 30
     const COLOURS = ['99,00,00', 'FF,66,00', 'FF,99,00', '99,66,33', 'CC,99,66']
     const canvas = document.getElementById('header-animation')
     const context = canvas.getContext('2d')
@@ -46,8 +47,8 @@ class Hero extends Component {
       }
 
       draw () {
-        this.x += range(0, 0.8)
-        this.y += range(1, 2)
+        this.x += range(0, 0.5)
+        this.y += range(0.3, 1)
         this.opacity += range(-0.05, 0.05)
         if (this.opacity > 1) {
           this.opacity = 1
@@ -82,14 +83,15 @@ class Hero extends Component {
   }
 
   render () {
+    const { t } = this.props
     return (
       <section className='header header-1'>
         <Img sizes={this.props.image.sizes} className='background-image' />
         <div className='container'>
           <div className='row'>
             <div className='text-center col-sm-11'>
-              <h1>You're Invited!</h1>
-              <h6>October 15th 2018 - Eastington Park, Cotswolds</h6>
+              <h1>{t('heading')}</h1>
+              <h6>{t('subheading')}</h6>
             </div>
           </div>
         </div>
@@ -99,4 +101,4 @@ class Hero extends Component {
   }
 }
 
-export default Hero
+export default translate('Hero')(Hero)

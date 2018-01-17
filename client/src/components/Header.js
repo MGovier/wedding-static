@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button } from 'reactstrap'
 
 class Header extends Component {
   constructor (props) {
@@ -39,6 +39,24 @@ class Header extends Component {
   }
 
   render () {
+    let toggleLanguage = null;
+    if (this.props.language === 'en') {
+      toggleLanguage = (
+        <NavItem>
+          <Button size='sm' outline color='secondary' onClick={this.props.changeNl}>
+            Change to Dutch 
+          </Button>
+        </NavItem>
+      )
+    } else {
+      toggleLanguage = (
+        <NavItem>
+          <Button size='sm' outline color='secondary' onClick={this.props.changeEn}>
+            Change to English
+          </Button>
+        </NavItem>
+      )
+    }
     return (
       // Navbar is functional, so need a wrapping plain DOM node to use ref, which is chosen over state for perf.
       <div className='nav-container' ref={(navbar) => { this.navbar = navbar }}>
@@ -64,6 +82,7 @@ class Header extends Component {
                   RSVP
                 </NavLink>
               </NavItem>
+              {toggleLanguage}
             </Nav>
           </Collapse>
         </Navbar>

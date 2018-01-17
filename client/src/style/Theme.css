@@ -213,9 +213,6 @@ nav {
   opacity: 1;
   cursor: pointer;
 }
-.menu li:hover a {
-  color: #75c5b1;
-}
 .menu li a {
   font-size: 12px;
   line-height: 20px;
@@ -227,6 +224,25 @@ nav {
   transition: all 0.3s ease;
   margin-right: 0;
 }
+.menu button.btn-outline-secondary {
+  color: white;
+  border-color: white;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: 2px;
+  margin-top: 2px;
+  font-size: 11px;
+  transition: all 0.3s ease;
+}
+
+.scrolled .menu button.btn-outline-secondary {
+  color: black;
+  border-color: black;
+}
+
 @media all and (max-width: 768px) {
   .nav-1 {
     height: auto;
@@ -320,23 +336,6 @@ nav.light span {
 .header li {
   color: #ffffff;
 }
-.header.light {
-  padding: 0;
-  background: #fff;
-}
-.header.light h1,
-.header.light h2,
-.header.light h3,
-.header.light h4,
-.header.light h5,
-.header.light h6 {
-  color: #222222;
-}
-.header.light p,
-.header.light span,
-.header.light li {
-  color: #444444;
-}
 .header .container {
   position: absolute;
   top: 30vh;
@@ -354,15 +353,6 @@ nav.light span {
   left: 0;
   right: 0;
   transform: translateY(-50%);
-}
-.header.fadeContent .row {
-  transition: all 0.3s ease;
-  opacity: 0;
-  transform: translateY(100px);
-}
-.header.fadeContent.fadeIn .row {
-  opacity: 1;
-  transform: translateY(0);
 }
 .header h1 {
   font-size: 120px;
@@ -419,15 +409,8 @@ nav.light span {
 .story {
   padding-bottom: 30px;
 }
-.story .feature {
-  margin-bottom: 60px;
-}
 .story h3 {
   margin-bottom: 30px;
-}
-.story h6 {
-  margin-bottom: 60px;
-  color: #75c5b1;
 }
 .story img {
   width: 20em;
@@ -448,6 +431,17 @@ nav.light span {
   transform: scale(1.1);
   z-index: 2;
   opacity: 1;
+}
+.story .time-heading {
+  text-align: center;
+  font-size: 3em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.story .event-emoji {
+  font-size: 3em;
+  text-align: center;
+  padding-top: 0em;
 }
 /*!---------- RSVP ----------*/
 section.rsvp {
