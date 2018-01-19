@@ -1,4 +1,6 @@
 {
-    "reception": "pls trans: Close friends and family, meet us at the venue before the ceremony at 14:00!",
-    "party": "pls trans: The evening party kicks off, with entertainment starting shortly after!"
+    "ceremony": "Goede vrienden en naaste familie, de ceremonie begint om twee uur, zorg ervoor dat je tijdig aanwezig bent! ",
+    "party": "Tijd voor feest! Met taart, hapjes en muziek! Verzoekjes mogen, maar is geen garantie, zie RSVP.",
+    "time-prefix": "Vier",
+    "time-postfix": "onze bruiloft samen met ons!"
 }

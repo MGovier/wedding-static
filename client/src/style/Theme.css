@@ -324,7 +324,7 @@ nav.light span {
   color: #ffffff;
 }
 .header h1 {
-  -webkit-text-stroke: 1px #022601;
+  -webkit-text-stroke: 1px #02260171;
   text-shadow:
    -6px -2px 10px #000,  
     6px -2px 10px #000,
@@ -355,8 +355,8 @@ nav.light span {
   transform: translateY(-50%);
 }
 .header h1 {
-  font-size: 120px;
-  line-height: 128px;
+  font-size: 110px;
+  line-height: 118px;
   font-weight: 100;
   margin-bottom: 30px;
 }

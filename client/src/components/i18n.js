@@ -11,12 +11,13 @@ i18n
     fallbackLng: 'en',
     ns: ['translations'],
     defaultNS: 'translations',
-    debug: true,
+    debug: false,
     interpolation: {
       escapeValue: false
     },
     react: {
-      wait: true
+      wait: true,
+      defaultTransParent: 'span'
     }
   })
 

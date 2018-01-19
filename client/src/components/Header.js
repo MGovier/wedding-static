@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button } from 'reactstrap'
+import { translate } from 'react-i18next'
 
 class Header extends Component {
   constructor (props) {
@@ -39,12 +40,13 @@ class Header extends Component {
   }
 
   render () {
-    let toggleLanguage = null;
-    if (this.props.language === 'en') {
+    let toggleLanguage = null
+    const { t } = this.props
+    if (this.props.language === 'en' || this.props.language == 'en-GB') {
       toggleLanguage = (
         <NavItem>
           <Button size='sm' outline color='secondary' onClick={this.props.changeNl}>
-            Change to Dutch 
+            🇳🇱 Nederlands 
           </Button>
         </NavItem>
       )
@@ -52,7 +54,7 @@ class Header extends Component {
       toggleLanguage = (
         <NavItem>
           <Button size='sm' outline color='secondary' onClick={this.props.changeEn}>
-            Change to English
+            🇬🇧 English
           </Button>
         </NavItem>
       )
@@ -69,17 +71,17 @@ class Header extends Component {
             <Nav className='ml-auto menu' navbar>
               <NavItem>
                 <NavLink href='#map' className='inner-link'>
-                  Map
+                  {t('map')}
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='#accommodation' className='inner-link'>
-                  Accommodation
+                  {t('accommodation')}
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='#rsvp' className='inner-link'>
-                  RSVP
+                  {t('rsvp')}
                 </NavLink>
               </NavItem>
               {toggleLanguage}
@@ -91,4 +93,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default translate('Header')(Header)
