@@ -11,11 +11,11 @@ class LogIn extends Component {
     return `${this.props.name[0]}`
   }
   render () {
-    const { t } = this.props
-    if (this.props.loggedIn) {
+    const { t, image, loggedIn } = this.props
+    if (loggedIn) {
       return (
         <section id='rsvp' className='rsvp'>
-          <Img sizes={this.props.image.sizes} className='background-image' />
+          <Img sizes={image.sizes} className='background-image' />
           <Container>
             <Row className='justify-content-center'>
               <Col className='align-self-center text-center-if-small' sm={{ size: 9 }} xs={{ size: 12 }}>
@@ -33,7 +33,7 @@ class LogIn extends Component {
     }
     return (
       <section id='rsvp' className='rsvp'>
-        <Img sizes={this.props.image.sizes} className='background-image' />
+        <Img sizes={image.sizes} className='background-image' />
         <Container>
           <Row>
             <Col md={{ size: 8 }} sm={{ size: 10 }} className='text-center'>

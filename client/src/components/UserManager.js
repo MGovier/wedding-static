@@ -13,7 +13,7 @@ class UserManager extends Component {
   }
   render () {
     let extraContent = null
-    if (this.state.authenticated) {
+    if (this.state.loggedIn) {
       extraContent = <div><RSVP /></div>
     }
     return (
