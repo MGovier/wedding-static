@@ -32,11 +32,15 @@ class Header extends Component {
   }
 
   handleScroll = event => {
-    if (event.target.documentElement.scrollTop !== 0 || this.state.isOpen) {
+    if (event.target.scrollingElement.scrollTop !== 0 || this.state.isOpen) {
       this.addScrolled()
     } else {
       this.removeScrolled()
     }
+  }
+
+  closeNav = () => {
+    this.setState({isOpen: false})
   }
 
   render () {
@@ -45,7 +49,10 @@ class Header extends Component {
     if (this.props.language === 'en' || this.props.language == 'en-GB') {
       toggleLanguage = (
         <NavItem>
-          <Button size='sm' outline color='secondary' onClick={this.props.changeNl}>
+          <Button size='sm' outline color='secondary' onClick={() => { 
+            this.props.changeNl()
+            this.closeNav()
+          }}>
             🇳🇱 Nederlands 
           </Button>
         </NavItem>
@@ -53,7 +60,10 @@ class Header extends Component {
     } else {
       toggleLanguage = (
         <NavItem>
-          <Button size='sm' outline color='secondary' onClick={this.props.changeEn}>
+          <Button size='sm' outline color='secondary' onClick={() => { 
+            this.props.changeEn()
+            this.closeNav()
+          }}>
             🇬🇧 English
           </Button>
         </NavItem>
@@ -70,17 +80,17 @@ class Header extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className='ml-auto menu' navbar>
               <NavItem>
-                <NavLink href='#map' className='inner-link'>
+                <NavLink href='#map' className='inner-link' onClick={this.closeNav}>
                   {t('map')}
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#accommodation' className='inner-link'>
+                <NavLink href='#accommodation' className='inner-link' onClick={this.closeNav}>
                   {t('accommodation')}
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='#rsvp' className='inner-link'>
+                <NavLink href='#rsvp' className='inner-link' onClick={this.closeNav}>
                   {t('rsvp')}
                 </NavLink>
               </NavItem>
