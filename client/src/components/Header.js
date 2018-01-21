@@ -46,7 +46,8 @@ class Header extends Component {
   render () {
     let toggleLanguage = null
     const { t } = this.props
-    if (this.props.language === 'en' || this.props.language == 'en-GB') {
+    console.log(this.props.language)
+    if (this.props.language === 'en' || this.props.language.startsWith('en')) {
       toggleLanguage = (
         <NavItem>
           <Button size='sm' outline color='secondary' onClick={() => { 
