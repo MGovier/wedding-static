@@ -16,16 +16,26 @@ const TemplateWrapper = ({ children, data, i18n }) => (
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
-        { name: 'description', content: 'Information for Birgit and Merlin Wedding October 2018' },
-        { name: 'keywords', content: 'eastington, wedding, birgit, merlin, govier' }
+        {
+          name: 'description',
+          content: 'Information for Birgit and Merlin Wedding October 2018'
+        },
+        {
+          name: 'keywords',
+          content: 'eastington, wedding, birgit, merlin, govier'
+        }
       ]}
     />
-    <Header changeEn={() => i18n.changeLanguage('en')} changeNl={() => i18n.changeLanguage('nl')} language={i18n.language} />
+    <Header
+      changeEn={() => i18n.changeLanguage('en')}
+      changeNl={() => i18n.changeLanguage('nl')}
+      language={i18n.language}
+    />
     <Hero image={data.heroImage} />
     <Couple />
     <Location />
     <Venue />
-    { children() }
+    {children()}
     <Footer />
   </div>
 )

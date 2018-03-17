@@ -18,7 +18,11 @@ class LogIn extends Component {
           <Img sizes={image.sizes} className='background-image' />
           <Container>
             <Row className='justify-content-center'>
-              <Col className='align-self-center text-center-if-small' sm={{ size: 9 }} xs={{ size: 12 }}>
+              <Col
+                className='align-self-center text-center-if-small'
+                sm={{ size: 9 }}
+                xs={{ size: 12 }}
+              >
                 <h3>Hi {this.friendlyNames()}</h3>
               </Col>
               <Col className='align-self-center' sm='3' xs='12'>
@@ -43,10 +47,20 @@ class LogIn extends Component {
           </Row>
           <Row className='input-row'>
             <Col xs={{ size: 12 }} md='5'>
-              <Input type='text' name='word1' id='word1' placeholder={t('first-word')} />
+              <Input
+                type='text'
+                name='word1'
+                id='word1'
+                placeholder={t('first-word')}
+              />
             </Col>
             <Col xs={{ size: 12 }} md='5'>
-              <Input type='text' name='word2' id='word2' placeholder={t('second-word')} />
+              <Input
+                type='text'
+                name='word2'
+                id='word2'
+                placeholder={t('second-word')}
+              />
             </Col>
             <Col xs={{ size: 12 }} md='2'>
               <Button color='primary' block>

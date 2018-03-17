@@ -30,27 +30,37 @@ class Couple extends Component {
         <Container>
           <Row>
             <Col md={{ size: 8 }} sm={{ size: 10 }} className='text-center'>
-              <h3>{t('time-prefix')} {this.getTimescale()} {t('time-postfix')}</h3>
+              <h3>
+                {t('time-prefix')} {this.getTimescale()} {t('time-postfix')}
+              </h3>
             </Col>
           </Row>
           <Row className='justify-content-around'>
             <Col md={{ size: 3 }} xs={{ size: 12 }}>
               <h5 className='event-emoji'>👰🏻</h5>
               <h5 className='time-heading'>12:30</h5>
-              <p style={{textAlign: 'center', verticalAlign: 'middle'}}>
+              <p style={{ textAlign: 'center', verticalAlign: 'middle' }}>
                 {t('ceremony')}
               </p>
             </Col>
             <Col md={{ size: 3 }} xs={{ size: 6 }}>
-              <img alt='Portrait of Birgit' className='birgy' src={BirgitPortrait} />
+              <img
+                alt='Portrait of Birgit'
+                className='birgy'
+                src={BirgitPortrait}
+              />
             </Col>
             <Col md={{ size: 3 }} xs={{ size: 6 }}>
-              <img alt='Portrait of Merlin' className='merly' src={MerlinPortrait} />
+              <img
+                alt='Portrait of Merlin'
+                className='merly'
+                src={MerlinPortrait}
+              />
             </Col>
             <Col md={{ size: 3 }} xs={{ size: 12 }}>
               <h5 className='event-emoji'>🎉</h5>
               <h5 className='time-heading'>17:00</h5>
-              <p style={{textAlign: 'center', verticalAlign: 'middle'}}>
+              <p style={{ textAlign: 'center', verticalAlign: 'middle' }}>
                 {t('party')}
               </p>
             </Col>

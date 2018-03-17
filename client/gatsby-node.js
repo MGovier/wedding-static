@@ -1,7 +1,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 
-exports.onPostBuild = () => {
+exports.onPostBootstrap = () => {
   console.log('Copying locales')
   fs.copySync(
     path.join(__dirname, '/src/locales'),

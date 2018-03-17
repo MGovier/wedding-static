@@ -14,13 +14,21 @@ class UserManager extends Component {
   render () {
     let extraContent = null
     if (this.state.loggedIn) {
-      extraContent = <div><RSVP /></div>
+      extraContent = (
+        <div>
+          <RSVP />
+        </div>
+      )
     }
     return (
       <div>
         <div className='main-container'>
-          <LogIn loggedIn={this.state.loggedIn} name={this.state.name} image={this.props.image} />
-          { extraContent }
+          <LogIn
+            loggedIn={this.state.loggedIn}
+            name={this.state.name}
+            image={this.props.image}
+          />
+          {extraContent}
         </div>
       </div>
     )
