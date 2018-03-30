@@ -354,6 +354,18 @@ nav.light span {
   right: 0;
   transform: translateY(-50%);
 }
+.rsvp#logged-in .container {
+  position: absolute;
+  top: 3em;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+.rsvp#logged-in h3 {
+  color: snow;
+}
 .header h1 {
   font-size: 110px;
   line-height: 118px;
@@ -453,6 +465,9 @@ section.rsvp {
 section.rsvp h2, section.rsvp h6 {
   color: #fff
 }
+section.rsvp#logged-in {
+  height: 6em;
+}
 section.rsvp .input-row {
   margin-top: 4em;
   margin-bottom: 2em;
@@ -492,4 +507,34 @@ section.rsvp .input-row {
 
 .footer .container {
   margin-top: -0.8em;
+}
+
+@keyframes shake {
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+.shake {
+  animation-name: shake;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }

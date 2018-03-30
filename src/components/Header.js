@@ -1,14 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Button
-} from 'reactstrap'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button } from 'reactstrap'
 import { translate } from 'react-i18next'
 
 class Header extends Component {
@@ -20,7 +11,7 @@ class Header extends Component {
   }
 
   componentDidMount () {
-    document.addEventListener('scroll', this.handleScroll)
+    document.addEventListener('scroll', this.handleScroll, { passive: true })
   }
 
   toggle = () => {
@@ -30,15 +21,15 @@ class Header extends Component {
       }
       return { isOpen: !prevState.isOpen }
     })
-  }
+  };
 
   addScrolled = () => {
     this.navbar.classList.add('scrolled')
-  }
+  };
 
   removeScrolled = () => {
     this.navbar.classList.remove('scrolled')
-  }
+  };
 
   handleScroll = event => {
     if (event.target.scrollingElement.scrollTop !== 0 || this.state.isOpen) {
@@ -46,11 +37,11 @@ class Header extends Component {
     } else {
       this.removeScrolled()
     }
-  }
+  };
 
   closeNav = () => {
     this.setState({ isOpen: false })
-  }
+  };
 
   render () {
     let toggleLanguage = null
@@ -96,13 +87,7 @@ class Header extends Component {
           this.navbar = navbar
         }}
       >
-        <Navbar
-          id='nav-1'
-          color='faded'
-          light
-          className='nav nav-1 transparent light'
-          expand='md'
-        >
+        <Navbar id='nav-1' color='faded' light className='nav nav-1 transparent light' expand='md'>
           <NavbarBrand href='/' className='logo'>
             <span>Birgit &amp; Merlin</span>
           </NavbarBrand>
@@ -110,29 +95,17 @@ class Header extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className='ml-auto menu' navbar>
               <NavItem>
-                <NavLink
-                  href='#map'
-                  className='inner-link'
-                  onClick={this.closeNav}
-                >
+                <NavLink href='#map' className='inner-link' onClick={this.closeNav}>
                   {t('map')}
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink
-                  href='#accommodation'
-                  className='inner-link'
-                  onClick={this.closeNav}
-                >
+                <NavLink href='#accommodation' className='inner-link' onClick={this.closeNav}>
                   {t('accommodation')}
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink
-                  href='#rsvp'
-                  className='inner-link'
-                  onClick={this.closeNav}
-                >
+                <NavLink href='#rsvp' className='inner-link' onClick={this.closeNav}>
                   {t('rsvp')}
                 </NavLink>
               </NavItem>

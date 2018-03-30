@@ -7,28 +7,38 @@ class UserManager extends Component {
     super(props)
     this.state = {
       loggedIn: false,
-      name: ['Lucy', 'Shannon'],
-      coming: false
+      data: {}
     }
   }
+  setStatus = (logIn, d = {}) => {
+    this.setState({loggedIn: logIn, data: d})
+  }
+  componentDidMount () {
+    fetch(process.env.API_URL + 'rsvp')
+      .then(response => {
+        return new Promise((resolve, reject) => {
+          if (response.status !== 200) {
+            reject(new Error('non 200 status code'))
+          }
+          response
+            .json()
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+        })
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(() => {
+        this.setState({ loggedIn: false })
+      })
+  }
   render () {
-    let extraContent = null
-    if (this.state.loggedIn) {
-      extraContent = (
-        <div>
-          <RSVP />
-        </div>
-      )
-    }
     return (
       <div>
         <div className='main-container'>
-          <LogIn
-            loggedIn={this.state.loggedIn}
-            name={this.state.name}
-            image={this.props.image}
-          />
-          {extraContent}
+          <LogIn loggedIn={this.state.loggedIn} data={this.state.data} image={this.props.image} setStatus={this.setStatus} />
+          {this.state.loggedIn && <RSVP />}
         </div>
       </div>
     )

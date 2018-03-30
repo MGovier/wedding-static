@@ -17,6 +17,26 @@ module.exports = {
       options: {
         precision: 8
       }
-    }
+    },
+    'gatsby-plugin-react-next',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Birgit and Merlin 2018',
+        short_name: 'B+M 2018',
+        start_url: '/',
+        background_color: '#8c5a2f',
+        theme_color: '#ffffff',
+        display: 'minimal-ui',
+        icons: [
+          {
+            src: `/android-icon.png`,
+            sizes: `512x512`,
+            type: `image/png`
+          }
+        ]
+      }
+    },
+    'gatsby-plugin-offline'
   ]
 }

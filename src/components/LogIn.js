@@ -4,17 +4,87 @@ import Img from 'gatsby-image'
 import { translate } from 'react-i18next'
 
 class LogIn extends Component {
-  friendlyNames = () => {
-    if (this.props.name.length > 1) {
-      return `${this.props.name[0]} and ${this.props.name[1]}`
+  constructor (props) {
+    super(props)
+    this.state = {
+      code: ''
     }
-    return `${this.props.name[0]}`
+  }
+  updateCode = e => {
+    this.setState({code: e.target.value})
+  }
+  submitCode = code => {
+    fetch(process.env.API_URL + 'auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ code })
+    })
+      .then(response => {
+        return new Promise((resolve, reject) => {
+          if (response.status !== 200) {
+            reject(new Error('non 200 status code'))
+          }
+          response
+            .json()
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+        })
+      })
+      .then(data => {
+        this.setState({code: ''})
+        this.props.setStatus(true, data)
+      })
+      .catch(() => {
+        this.props.setStatus(false)
+        this.animateFailure()
+      })
+  }
+  animateFailure = () => {
+    document.getElementById('log-in-row').className += ' shake'
+    setTimeout(() => {
+      document.getElementById('log-in-row').className = document.getElementById('log-in-row').className.replace(/ shake/g, '')
+    }, 2000)
+  }
+  logOut = () => {
+    fetch(process.env.API_URL + 'auth', {
+      method: 'DELETE'
+    })
+      .then(response => {
+        return new Promise((resolve, reject) => {
+          if (response.status !== 200) {
+            reject(new Error('non 200 status code'))
+          }
+          response
+            .json()
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+        })
+      })
+      .then(data => {
+        console.log(data)
+        this.props.setStatus(false)
+      })
+      .catch(() => {
+        this.props.setStatus(false)
+      })
+  }
+  friendlyNames = () => {
+    const names = this.props.data.names
+    if (names.length === 2) {
+      return `${names[0]} and ${names[1]}`
+    }
+    if (names.length === 3) {
+      return `${names[0]}, ${names[1]}, and ${names[2]}`
+    }
+    return `${names[0]}`
   }
   render () {
     const { t, image, loggedIn } = this.props
     if (loggedIn) {
       return (
-        <section id='rsvp' className='rsvp'>
+        <section id='logged-in' className='rsvp'>
           <Img sizes={image.sizes} className='background-image' />
           <Container>
             <Row className='justify-content-center'>
@@ -23,10 +93,10 @@ class LogIn extends Component {
                 sm={{ size: 9 }}
                 xs={{ size: 12 }}
               >
-                <h3>Hi {this.friendlyNames()}</h3>
+                <h3>Hey {this.friendlyNames()}!</h3>
               </Col>
               <Col className='align-self-center' sm='3' xs='12'>
-                <Button block color='danger'>
+                <Button block color='danger' onClick={this.logOut}>
                   Logout
                 </Button>
               </Col>
@@ -45,25 +115,19 @@ class LogIn extends Component {
               <h6>{t('subheading')}</h6>
             </Col>
           </Row>
-          <Row className='input-row'>
-            <Col xs={{ size: 12 }} md='5'>
+          <Row className='input-row' id='log-in-row'>
+            <Col xs={{ size: 12 }} md='10'>
               <Input
                 type='text'
                 name='word1'
                 id='word1'
                 placeholder={t('first-word')}
-              />
-            </Col>
-            <Col xs={{ size: 12 }} md='5'>
-              <Input
-                type='text'
-                name='word2'
-                id='word2'
-                placeholder={t('second-word')}
+                value={this.state.code}
+                onChange={this.updateCode}
               />
             </Col>
             <Col xs={{ size: 12 }} md='2'>
-              <Button color='primary' block>
+              <Button color='primary' block onClick={() => { this.submitCode(this.state.code) }}>
                 {t('go')}
               </Button>
             </Col>
