@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import { translate } from 'react-i18next'
 import moment from 'moment'
@@ -8,7 +8,7 @@ import 'moment/locale/nl'
 import MerlinPortrait from '../img/merlin-min.jpg'
 import BirgitPortrait from '../img/bir-min.jpg'
 
-class Couple extends Component {
+class Couple extends PureComponent {
   constructor () {
     super()
     this.getTimescale = this.getTimescale.bind(this)

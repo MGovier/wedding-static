@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Row, Col, Container } from 'reactstrap'
 import { translate, Trans } from 'react-i18next'
 
@@ -6,7 +6,7 @@ import eastington from '../img/eastington-park-min.jpg'
 import travelodge from '../img/travelodge-stonehouse-min.jpg'
 import kingsHead from '../img/kingshead-min.jpg'
 
-class Venue extends Component {
+class Venue extends PureComponent {
   render () {
     const { t } = this.props
     return (

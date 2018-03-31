@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { Container, Row, Col, Input, Button } from 'reactstrap'
+import React, { PureComponent } from 'react'
+import { Container, Row, Col, Input, Button, Form } from 'reactstrap'
 import Img from 'gatsby-image'
 import { translate } from 'react-i18next'
 
-class LogIn extends Component {
+class LogIn extends PureComponent {
   constructor (props) {
     super(props)
     this.state = {
@@ -13,13 +13,14 @@ class LogIn extends Component {
   updateCode = e => {
     this.setState({code: e.target.value})
   }
-  submitCode = code => {
-    fetch(process.env.API_URL + 'auth', {
+  submitCode = e => {
+    e.preventDefault()
+    window.fetch(process.env.API_URL + 'auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ code })
+      body: JSON.stringify({ code: this.state.code })
     })
       .then(response => {
         return new Promise((resolve, reject) => {
@@ -48,7 +49,7 @@ class LogIn extends Component {
     }, 2000)
   }
   logOut = () => {
-    fetch(process.env.API_URL + 'auth', {
+    window.fetch(process.env.API_URL + 'auth', {
       method: 'DELETE'
     })
       .then(response => {
@@ -115,23 +116,25 @@ class LogIn extends Component {
               <h6>{t('subheading')}</h6>
             </Col>
           </Row>
-          <Row className='input-row' id='log-in-row'>
-            <Col xs={{ size: 12 }} md='10'>
-              <Input
-                type='text'
-                name='word1'
-                id='word1'
-                placeholder={t('first-word')}
-                value={this.state.code}
-                onChange={this.updateCode}
-              />
-            </Col>
-            <Col xs={{ size: 12 }} md='2'>
-              <Button color='primary' block onClick={() => { this.submitCode(this.state.code) }}>
-                {t('go')}
-              </Button>
-            </Col>
-          </Row>
+          <Form onSubmit={this.submitCode}>
+            <Row className='input-row' id='log-in-row'>
+              <Col xs={{ size: 12 }} md='10'>
+                <Input
+                  type='text'
+                  name='word1'
+                  id='word1'
+                  placeholder={t('first-word')}
+                  value={this.state.code}
+                  onChange={this.updateCode}
+                />
+              </Col>
+              <Col xs={{ size: 12 }} md='2'>
+                <Button color='primary' block type='submit'>
+                  {t('go')}
+                </Button>
+              </Col>
+            </Row>
+          </Form>
         </Container>
       </section>
     )

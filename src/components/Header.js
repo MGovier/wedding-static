@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button } from 'reactstrap'
 import { translate } from 'react-i18next'
 
-class Header extends Component {
+class Header extends PureComponent {
   constructor (props) {
     super(props)
     this.state = {

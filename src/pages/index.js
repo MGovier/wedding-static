@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import UserManager from '../components/UserManager'
 import '../style/Bootstrap.scss'
 import '../style/Theme.css'
 import '../style/Custom.css'
 
-const IndexPage = ({ data }) => (
-  <div className='App'>
-    <UserManager image={data.rsvpImage} />
-  </div>
-)
+class IndexPage extends PureComponent {
+  render () {
+    return (
+      <UserManager image={this.props.data.rsvpImage} />
+    )
+  }
+}
+
+IndexPage.propTypes = {
+  data: PropTypes.object
+}
 
 export default IndexPage
 

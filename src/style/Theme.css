@@ -538,3 +538,32 @@ section.rsvp .input-row {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+
+.rsvp-card .form-group {
+  margin-top: -1em;
+}
+
+.rsvp-card .form-group:last-child {
+  margin-bottom: 0;
+}
+.rsvp-card .card-body {
+  padding-top: 0.5em;
+}
+.rsvp-card label {
+  margin: 0;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-decoration: blink;
+  line-height: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.accommodation .card-deck {
+  margin-bottom: 1.5em;
+}
+
+.accommodation form {
+  margin-top: 2em;
+}

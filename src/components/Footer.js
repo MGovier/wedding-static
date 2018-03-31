@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Container, Row, Col } from 'reactstrap'
 
-class Footer extends Component {
+class Footer extends PureComponent {
   render () {
     return (
       <section className='footer'>

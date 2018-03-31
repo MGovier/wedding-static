@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import Header from '../components/Header'
@@ -11,34 +11,38 @@ import Footer from '../components/Footer'
 import '../components/i18n'
 import { translate } from 'react-i18next'
 
-const TemplateWrapper = ({ children, data, i18n }) => (
-  <div>
-    <Helmet
-      title={data.site.siteMetadata.title}
-      meta={[
-        {
-          name: 'description',
-          content: 'Information for Birgit and Merlin Wedding October 2018'
-        },
-        {
-          name: 'keywords',
-          content: 'eastington, wedding, birgit, merlin, govier'
-        }
-      ]}
-    />
-    <Header
-      changeEn={() => i18n.changeLanguage('en')}
-      changeNl={() => i18n.changeLanguage('nl')}
-      language={i18n.language}
-    />
-    <Hero image={data.heroImage} />
-    <Couple />
-    <Location />
-    <Venue />
-    {children()}
-    <Footer />
-  </div>
-)
+class TemplateWrapper extends PureComponent {
+  render () {
+    return (
+      <div>
+        <Helmet
+          title={this.props.data.site.siteMetadata.title}
+          meta={[
+            {
+              name: 'description',
+              content: 'Information for Birgit and Merlin Wedding October 2018'
+            },
+            {
+              name: 'keywords',
+              content: 'eastington, wedding, birgit, merlin, govier'
+            }
+          ]}
+        />
+        <Header
+          changeEn={() => this.props.i18n.changeLanguage('en')}
+          changeNl={() => this.props.i18n.changeLanguage('nl')}
+          language={this.props.i18n.language}
+        />
+        <Hero image={this.props.data.heroImage} />
+        <Couple />
+        <Location />
+        <Venue />
+        {this.props.children()}
+        <Footer />
+      </div>
+    )
+  }
+}
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import LogIn from './LogIn'
 import RSVP from './RSVP'
 
-class UserManager extends Component {
+class UserManager extends PureComponent {
   constructor (props) {
     super(props)
     this.state = {
@@ -14,7 +14,7 @@ class UserManager extends Component {
     this.setState({loggedIn: logIn, data: d})
   }
   componentDidMount () {
-    fetch(process.env.API_URL + 'rsvp')
+    window.fetch(process.env.API_URL + 'rsvp')
       .then(response => {
         return new Promise((resolve, reject) => {
           if (response.status !== 200) {

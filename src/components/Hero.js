@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Img from 'gatsby-image'
 import { translate } from 'react-i18next'
 
-class Hero extends Component {
+class Hero extends PureComponent {
   runAnimation () {
     const NUM_CONFETTI = 30
     const COLOURS = ['99,00,00', 'FF,66,00', 'FF,99,00', '99,66,33', 'CC,99,66']

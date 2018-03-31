@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   withGoogleMap,
   GoogleMap,
@@ -9,7 +9,7 @@ import {
 import mapStyle from '../constants/mapStyle.json'
 import marker from '../img/weddingicon.png'
 
-class Location extends Component {
+class Location extends PureComponent {
   constructor (props) {
     super(props)
     this.markers = [
