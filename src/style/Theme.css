@@ -539,10 +539,6 @@ section.rsvp .input-row {
   animation-fill-mode: both;
 }
 
-.rsvp-card .form-group {
-  margin-top: -1em;
-}
-
 .rsvp-card .form-group:last-child {
   margin-bottom: 0;
 }
@@ -553,11 +549,21 @@ section.rsvp .input-row {
   margin: 0;
   font-size: 10px;
   text-transform: uppercase;
-  text-decoration: blink;
   line-height: 20px;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 2px;
+}
+.rsvp-card .card-header {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+.rsvp-card .form-check-label {
+  margin-left: 1em;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .accommodation .card-deck {
@@ -566,4 +572,10 @@ section.rsvp .input-row {
 
 .accommodation form {
   margin-top: 2em;
+}
+
+.accommodation .alert {
+  margin: 0 auto;
+  margin-top: 1em;
+  width: 97%;
 }

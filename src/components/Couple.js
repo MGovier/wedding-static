@@ -59,7 +59,7 @@ class Couple extends PureComponent {
             </Col>
             <Col md={{ size: 3 }} xs={{ size: 12 }}>
               <h5 className='event-emoji'>🎉</h5>
-              <h5 className='time-heading'>17:00</h5>
+              <h5 className='time-heading'>19:00</h5>
               <p style={{ textAlign: 'center', verticalAlign: 'middle' }}>
                 {t('party')}
               </p>

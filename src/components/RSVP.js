@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+  Alert,
   Row,
   Col,
   Container,
@@ -14,29 +15,28 @@ import {
   CardBody,
   CardText
 } from 'reactstrap'
+import { translate } from 'react-i18next'
 
 let index = 0
 
 class RSVP extends Component {
   constructor (props) {
     super(props)
+    let guests = []
+    props.data.names.forEach(name => {
+      guests.push({
+        name,
+        attending: '',
+        starter: '',
+        main: ''
+      })
+    })
     this.state = {
-      day: true,
+      day: this.props.data.day,
       email: '',
-      guests: [
-        {
-          name: 'Steve',
-          attending: '',
-          starter: '',
-          main: ''
-        },
-        {
-          name: 'Mary',
-          attending: '',
-          starter: '',
-          main: ''
-        }
-      ]
+      guests,
+      success: false,
+      error: ''
     }
   }
 
@@ -47,6 +47,10 @@ class RSVP extends Component {
           return guest
         }
         guest[field] = value
+        if (field === 'attending' && value === false && this.state.day) {
+          guest.starter = ''
+          guest.main = ''
+        }
         return guest
       })
       return {
@@ -57,116 +61,138 @@ class RSVP extends Component {
 
   submitRSVP = e => {
     e.preventDefault()
-    console.log(this.state)
+    if (!this.validateState()) {
+      this.setState({error: this.props.t('missingField')})
+      return
+    }
+    window
+      .fetch(process.env.API_URL + 'rsvp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ guests: this.state.guests })
+      })
+      .then(response => {
+        return new Promise((resolve, reject) => {
+          if (response.status !== 200) {
+            reject(new Error('non 200 status code'))
+          }
+          response
+            .json()
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+        })
+      })
+      .then(data => {
+        this.setState({ success: true })
+      })
+      .catch(() => {
+        this.setState({ error: this.props.t('sendError') })
+      })
+  };
+
+  validateState = () => {
+    const guests = this.state.guests
+    for (let i = 0; i < guests.length; i++) {
+      const g = guests[i]
+      if (g.attending !== true && g.attending !== false) {
+        return false
+      }
+      if (g.attending === true && this.state.day && (g.main === '' || g.starter === '')) {
+        return false
+      }
+    }
+    return true
   }
 
   render () {
-    let guestCards
-    if (this.state.guests.length === 1) {
-      let name = this.state.guests[0].name
-      guestCards = (
-        <CardDeck key={index++}>
-          <Card className='rsvp-card'>
-            <CardHeader>{name}</CardHeader>
-            <CardBody>
-              <CardText>
-                <Input
-                  type='select'
-                  name={`${name}-starterSelect`}
-                  id={`${name}-starterSelect`}
-                  value={this.state.guests[0].starter}
-                >
-                  <option value='' disabled>
-                    Choose an option...
-                  </option>
-                  <option value='starter 1'>Starter 1</option>
-                  <option value='starter 2'>Starter 2</option>
-                </Input>
-                <Input
-                  type='select'
-                  name={`${name}-mainSelect`}
-                  id={`${name}-mainSelect`}
-                  value={this.state.guests[0].starter}
-                >
-                  <option value='' disabled>
-                    Choose an option...
-                  </option>
-                  <option value='main 1'>Main 1</option>
-                  <option value='main 2'>Main 2</option>
-                </Input>
-              </CardText>
-            </CardBody>
-          </Card>
-        </CardDeck>
-      )
-    } else {
-      guestCards = (
-        <CardDeck>
-          {this.state.guests.map(guest => {
-            return (
-              <Card key={index++} className='rsvp-card'>
-                <CardHeader>{guest.name}</CardHeader>
-                <CardBody>
-                  <CardText>
-                    <span className='form-group'>
-                      <Label for={`${guest.name}-attending`}>Can you make it?</Label>
-                      <Input
-                        type='select'
-                        name={`${guest.name}-attending`}
-                        value={guest.attending}
-                        onChange={e => {
-                          this.updateGuest(guest.name, 'attending', e.target.value)
-                        }}
-                      >
-                        <option value='' disabled>
-                          Choose an option...
-                        </option>
-                        <option value='true'>Yes, I will attend!</option>
-                        <option value='false'>No, I can't attend</option>
-                      </Input>
-                    </span>
-                    <span className='form-group'>
-                      <Label for={`${guest.name}-starterSelect`}>Which starter do you prefer?</Label>
-                      <Input
-                        type='select'
-                        name={`${guest.name}-starterSelect`}
-                        value={guest.starter}
-                        onChange={e => {
-                          this.updateGuest(guest.name, 'starter', e.target.value)
-                        }}
-                      >
-                        <option value='' disabled>
-                          Choose an option...
-                        </option>
-                        <option value='starter 1'>Starter 1</option>
-                        <option value='starter 2'>Starter 2</option>
-                      </Input>
-                    </span>
-                    <span className='form-group'>
-                      <Label for={`${guest.name}-mainSelect`}>Which main would you like?</Label>
-                      <Input
-                        type='select'
-                        name={`${guest.name}-mainSelect`}
-                        value={guest.main}
-                        onChange={e => {
-                          this.updateGuest(guest.name, 'main', e.target.value)
-                        }}
-                      >
-                        <option value='' disabled>
-                          Choose an option...
-                        </option>
-                        <option value='main 1'>Main 1</option>
-                        <option value='main 2'>Main 2</option>
-                      </Input>
-                    </span>
-                  </CardText>
-                </CardBody>
-              </Card>
-            )
-          })}
-        </CardDeck>
+    const { t } = this.props
+    if (this.state.success) {
+      return (
+        <section className='accommodation'>
+          <Container>
+            <Alert color='success'>{t('rsvpReceived')}</Alert>
+          </Container>
+        </section>
       )
     }
+    let guestCards = (
+      <CardDeck>
+        {this.state.guests.map(guest => {
+          return (
+            <Card key={index++} className='rsvp-card'>
+              <CardHeader>{guest.name}</CardHeader>
+              <CardBody>
+                <CardText>
+                  <span className='form-group' tag='fieldset'>
+                    <Label>{t('makeIt')}</Label>
+                    <span className='form-check'>
+                      <Label check>
+                        <Input type='radio' name={`radio-${index}`} checked={guest.attending === true} onChange={() => { this.updateGuest(guest.name, 'attending', true) }} />
+                        {t('willAttend')}
+                      </Label>
+                    </span>
+                    <span className='form-check'>
+                      <Label check>
+                        <Input type='radio' name={`radio-${index}`} checked={guest.attending === false} onChange={() => { this.updateGuest(guest.name, 'attending', false) }} />
+                        {t('cantAttend')}
+                      </Label>
+                    </span>
+                  </span>
+                  {this.state.day && (
+                    <span>
+                      <span className='form-group'>
+                        <Label for={`${guest.name}-starterSelect`}>{t('whichStarter')}</Label>
+                        <Input
+                          type='select'
+                          name={`${guest.name}-starterSelect`}
+                          value={guest.starter}
+                          disabled={guest.attending === false}
+                          onChange={e => {
+                            this.updateGuest(guest.name, 'starter', e.target.value)
+                          }}
+                        >
+                          <option value='' disabled>
+                            {t('chooseOption')}
+                          </option>
+                          <option value='Haddock fishcake with creamed leeks'>
+                            {t('fishcakes')}
+                          </option>
+                          <option value='Garlic wild mushroom brioche (v)'>{t('mushroom')}</option>
+                        </Input>
+                      </span>
+                      <span className='form-group'>
+                        <Label for={`${guest.name}-mainSelect`}>{t('whichMain')}</Label>
+                        <Input
+                          type='select'
+                          name={`${guest.name}-mainSelect`}
+                          value={guest.main}
+                          disabled={guest.attending === false}
+                          onChange={e => {
+                            this.updateGuest(guest.name, 'main', e.target.value)
+                          }}
+                        >
+                          <option value='' disabled>
+                            {t('chooseOption')}
+                          </option>
+                          <option value='Shin of beef, dauphinoise potatoes, and seasonal vegetables'>
+                            {t('beef')}
+                          </option>
+                          <option value='Winter vegetable wellington, roasted potatoes, and seasonal vegetables (v)'>
+                            {t('wellington')}
+                          </option>
+                        </Input>
+                      </span>
+                    </span>
+                  )}
+                </CardText>
+              </CardBody>
+            </Card>
+          )
+        })}
+      </CardDeck>
+    )
     return (
       <section className='accommodation'>
         <Container>
@@ -181,31 +207,51 @@ class RSVP extends Component {
                 Email
               </Label>
               <Col sm={10}>
-                <Input type='email' name='emailInput' id='emailInput' value={this.state.email} onChange={e => { this.setState({email: e.target.value}) }} placeholder='you@email.com' />
+                <Input
+                  type='email'
+                  name='emailInput'
+                  id='emailInput'
+                  value={this.state.email}
+                  onChange={e => {
+                    this.setState({ email: e.target.value })
+                  }}
+                  placeholder={t('emailPlaceholder')}
+                />
               </Col>
             </FormGroup>
-            {this.state.day && guestCards}
+            {guestCards}
             <FormGroup row>
               <Label for='messageInput' sm={2}>
-                Message
+                {t('message')}
               </Label>
               <Col sm={10}>
                 <Input
                   type='textarea'
                   name='messageInput'
                   id='messageInput'
-                  placeholder="Let us know about dietary requirements, or anything you&apos;d like to add..."
+                  placeholder={t('messagePlaceholder')}
                   value={this.state.message}
-                  onChange={e => { this.setState({message: e.target.value}) }}
+                  onChange={e => {
+                    this.setState({ message: e.target.value })
+                  }}
                 />
               </Col>
             </FormGroup>
-            <Button block type='submit'>Send</Button>
+            <Button block type='submit'>
+              {t('send')}
+            </Button>
           </Form>
+          {this.state.error !== '' && (
+            <Row>
+              <Alert color='danger'>
+                {this.state.error}
+              </Alert>
+            </Row>
+          )}
         </Container>
       </section>
     )
   }
 }
 
-export default RSVP
+export default translate('RSVP')(RSVP)

@@ -38,7 +38,7 @@ class UserManager extends PureComponent {
       <div>
         <div className='main-container'>
           <LogIn loggedIn={this.state.loggedIn} data={this.state.data} image={this.props.image} setStatus={this.setStatus} />
-          {this.state.loggedIn && <RSVP />}
+          {this.state.loggedIn && <RSVP data={this.state.data} />}
         </div>
       </div>
     )
