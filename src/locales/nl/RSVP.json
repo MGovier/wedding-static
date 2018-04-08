@@ -1,0 +1,19 @@
+{
+    "rsvpReceived": "RSVP ontvangen, bedankt!",
+    "missingField": "Het lijkt erop dat er hierboven een veld ontbreekt!",
+    "makeIt": "Kun je op onze bruiloft komen?",
+    "willAttend": "Ja, ik zal aanwezig zijn 😃",
+    "cantAttend": "Nee, ik kan niet aanwezig zijn 😕",
+    "whichStarter": "Welk voorgerecht heeft je voorkeur?",
+    "whichMain": "Welk hoofdgerecht heeft je voorkeur?",
+    "chooseOption": "Kies een optie...",
+    "fishcakes": "Viskoekje van schelvis met romige prei",
+    "mushroom": "Wilde paddestoelen brioche met knoflook (v)",
+    "beef": "Schenkelvlees van rund, gratin dauphinoise en seizoensgroenten",
+    "wellington": "Wellington met wintergroenten, geroosterde aardappelen en seizoensgroenten (v)",
+    "messagePlaceholder": "Laat ons weten of je speciale dieetvoorschriften of allergieën hebt, of als je nog iets wil toevoegen...",
+    "send": "Verzenden",
+    "message": "Bericht",
+    "emailPlaceholder": "jij@email.nl",
+    "sendError": "Er is een probleem opgetreden bij het verzenden van de RSVP, sorry! Kun je het opnieuw proberen of contact opnemen met Birgit en Merlin?"
+}

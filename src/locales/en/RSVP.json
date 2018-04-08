@@ -1,0 +1,19 @@
+{
+    "rsvpReceived": "RSVP Received, Thanks!",
+    "missingField": "It looks like there is a field missing above!",
+    "makeIt": "Can you make it?",
+    "willAttend": "Yes, I will attend 😃",
+    "cantAttend": "No, I can't attend 😕",
+    "whichStarter": "Which starter do you prefer?",
+    "whichMain": "Which main would you like?",
+    "chooseOption": "Choose an option...",
+    "fishcakes": "Haddock fishcake with creamed leeks",
+    "mushroom": "Garlic wild mushroom brioche (v)",
+    "beef": "Shin of beef, dauphinoise potatoes, and seasonal vegetables",
+    "wellington": "Winter vegetable wellington, roasted potatoes, and seasonal vegetables (v)",
+    "messagePlaceholder": "Let us know about dietary requirements, or anything you'd like to add...",
+    "send": "Send",
+    "message": "Message",
+    "emailPlaceholder": "you@email.co.uk",
+    "sendError": "There was a problem sending your RSVP, sorry! Could you try again, or contact Birgit and Merlin?"
+}
