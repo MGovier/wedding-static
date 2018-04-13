@@ -14,7 +14,7 @@ class UserManager extends PureComponent {
     this.setState({loggedIn: logIn, data: d})
   }
   componentDidMount () {
-    window.fetch(process.env.API_URL + 'rsvp')
+    window.fetch(process.env.API_URL + 'rsvp', { credentials: 'include' })
       .then(response => {
         return new Promise((resolve, reject) => {
           if (response.status !== 200) {
@@ -27,7 +27,7 @@ class UserManager extends PureComponent {
         })
       })
       .then(data => {
-        console.log(data)
+        this.setState({ loggedIn: true, data })
       })
       .catch(() => {
         this.setState({ loggedIn: false })

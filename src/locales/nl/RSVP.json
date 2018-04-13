@@ -15,5 +15,6 @@
     "send": "Verzenden",
     "message": "Bericht",
     "emailPlaceholder": "jij@email.nl",
-    "sendError": "Er is een probleem opgetreden bij het verzenden van de RSVP, sorry! Kun je het opnieuw proberen of contact opnemen met Birgit en Merlin?"
+    "sendError": "Er is een probleem opgetreden bij het verzenden van de RSVP, sorry! Kun je het opnieuw proberen of contact opnemen met Birgit en Merlin?",
+    "alreadyRSVPd": "It looks like you've already RSVP'd! Here is what you sent us before... Let us know via us@birgitandmerlin.com if you'd like to make any changes."
 }

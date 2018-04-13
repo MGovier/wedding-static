@@ -15,5 +15,6 @@
     "send": "Send",
     "message": "Message",
     "emailPlaceholder": "you@email.co.uk",
-    "sendError": "There was a problem sending your RSVP, sorry! Could you try again, or contact Birgit and Merlin?"
+    "sendError": "There was a problem sending your RSVP, sorry! Could you try again, or contact Birgit and Merlin?",
+    "alreadyRSVPd": "It looks like you've already RSVP'd! Here is what you sent us before... Let us know via us@birgitandmerlin.com if you'd like to make any changes."
 }

@@ -20,27 +20,57 @@ import { translate } from 'react-i18next'
 let index = 0
 
 class RSVP extends Component {
-  constructor (props) {
-    super(props)
-    let guests = []
-    props.data.names.forEach(name => {
-      guests.push({
-        name,
-        attending: '',
-        starter: '',
-        main: ''
-      })
-    })
-    this.state = {
-      day: this.props.data.day,
-      email: '',
-      guests,
-      success: false,
-      error: ''
-    }
+  state = {
+    day: false,
+    email: '',
+    guests: [],
+    success: false,
+    error: '',
+    rsvpComplete: false,
+    message: ''
+  };
+
+  componentWillMount () {
+    this.prepareState(this.props)
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.prepareState(nextProps)
+  }
+
+  prepareState = props => {
+    let guests = []
+    if (props.data.hasOwnProperty('guests')) {
+      this.setState({
+        rsvpComplete: true,
+        guests: props.data.guests,
+        email: props.data.email,
+        message: props.data.message
+      })
+    } else {
+      props.data.names.forEach(name => {
+        guests.push({
+          name,
+          attending: '',
+          starter: '',
+          main: ''
+        })
+      })
+      this.setState({
+        rsvpComplete: false,
+        guests
+      })
+    }
+    this.setState({
+      names: props.data.names,
+      day: props.data.day
+    })
+  };
+
   updateGuest = (name, field, value) => {
+    if (this.state.rsvpComplete) {
+      return
+    }
     this.setState(state => {
       state.guests.map(guest => {
         if (guest.name !== name) {
@@ -62,8 +92,8 @@ class RSVP extends Component {
   submitRSVP = e => {
     e.preventDefault()
     if (!this.validateState()) {
-      this.setState({error: this.props.t('missingField')})
-      return
+      this.setState({ error: this.props.t('missingField') })
+      return;
     }
     window
       .fetch(process.env.API_URL + 'rsvp', {
@@ -71,7 +101,8 @@ class RSVP extends Component {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ guests: this.state.guests })
+        body: JSON.stringify({ guests: this.state.guests }),
+        credentials: 'include'
       })
       .then(response => {
         return new Promise((resolve, reject) => {
@@ -104,7 +135,7 @@ class RSVP extends Component {
       }
     }
     return true
-  }
+  };
 
   render () {
     const { t } = this.props
@@ -129,13 +160,27 @@ class RSVP extends Component {
                     <Label>{t('makeIt')}</Label>
                     <span className='form-check'>
                       <Label check>
-                        <Input type='radio' name={`radio-${index}`} checked={guest.attending === true} onChange={() => { this.updateGuest(guest.name, 'attending', true) }} />
+                        <Input
+                          type='radio'
+                          name={`radio-${index}`}
+                          checked={guest.attending === true}
+                          onChange={() => {
+                            this.updateGuest(guest.name, 'attending', true)
+                          }}
+                        />
                         {t('willAttend')}
                       </Label>
                     </span>
                     <span className='form-check'>
                       <Label check>
-                        <Input type='radio' name={`radio-${index}`} checked={guest.attending === false} onChange={() => { this.updateGuest(guest.name, 'attending', false) }} />
+                        <Input
+                          type='radio'
+                          name={`radio-${index}`}
+                          checked={guest.attending === false}
+                          onChange={() => {
+                            this.updateGuest(guest.name, 'attending', false)
+                          }}
+                        />
                         {t('cantAttend')}
                       </Label>
                     </span>
@@ -156,9 +201,7 @@ class RSVP extends Component {
                           <option value='' disabled>
                             {t('chooseOption')}
                           </option>
-                          <option value='Haddock fishcake with creamed leeks'>
-                            {t('fishcakes')}
-                          </option>
+                          <option value='Haddock fishcake with creamed leeks'>{t('fishcakes')}</option>
                           <option value='Garlic wild mushroom brioche (v)'>{t('mushroom')}</option>
                         </Input>
                       </span>
@@ -201,6 +244,11 @@ class RSVP extends Component {
               <h2>RSVP</h2>
             </Col>
           </Row>
+          {this.state.rsvpComplete && (
+            <Row>
+              <Alert color='success'>✔ {t('alreadyRSVPd')}</Alert>
+            </Row>
+          )}
           <Form onSubmit={this.submitRSVP}>
             <FormGroup row>
               <Label for='emailInput' sm={2}>
@@ -237,15 +285,15 @@ class RSVP extends Component {
                 />
               </Col>
             </FormGroup>
-            <Button block type='submit'>
-              {t('send')}
-            </Button>
+            {!this.state.rsvpComplete && (
+              <Button block type='submit'>
+                {t('send')}
+              </Button>
+            )}
           </Form>
           {this.state.error !== '' && (
             <Row>
-              <Alert color='danger'>
-                {this.state.error}
-              </Alert>
+              <Alert color='danger'>{this.state.error}</Alert>
             </Row>
           )}
         </Container>

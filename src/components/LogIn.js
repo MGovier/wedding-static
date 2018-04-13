@@ -20,7 +20,8 @@ class LogIn extends PureComponent {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ code: this.state.code })
+      body: JSON.stringify({ code: this.state.code }),
+      credentials: 'include'
     })
       .then(response => {
         return new Promise((resolve, reject) => {
