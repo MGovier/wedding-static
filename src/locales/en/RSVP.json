@@ -1,5 +1,5 @@
 {
-    "rsvpReceived": "RSVP Received, Thanks!",
+    "rsvpReceived": "RSVP received, thanks!",
     "missingField": "It looks like there is a field missing above!",
     "makeIt": "Can you make it?",
     "willAttend": "Yes, I will attend 😃",
@@ -16,5 +16,5 @@
     "message": "Message",
     "emailPlaceholder": "you@email.co.uk",
     "sendError": "There was a problem sending your RSVP, sorry! Could you try again, or contact Birgit and Merlin?",
-    "alreadyRSVPd": "It looks like you've already RSVP'd! Here is what you sent us before... Let us know via us@birgitandmerlin.com if you'd like to make any changes."
+    "alreadyRSVPd": "We've got your RSVP! Here is what you sent us... Let us know via us@birgitandmerlin.com if you'd like to make any changes."
 }

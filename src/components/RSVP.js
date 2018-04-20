@@ -27,7 +27,8 @@ class RSVP extends Component {
     success: false,
     error: '',
     rsvpComplete: false,
-    message: ''
+    message: '',
+    loading: false
   };
 
   componentWillMount () {
@@ -90,19 +91,24 @@ class RSVP extends Component {
   };
 
   submitRSVP = e => {
+    if (this.state.loading) {
+      // Don't send again if we're waiting for server resp.
+      return
+    }
     e.preventDefault()
     if (!this.validateState()) {
       this.setState({ error: this.props.t('missingField') })
-      return;
+      return
     }
+    this.setState({loading: true})
     window
       .fetch(process.env.API_URL + 'rsvp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ guests: this.state.guests }),
-        credentials: 'include'
+        body: JSON.stringify({ guests: this.state.guests, email: this.state.email, message: this.state.message }),
+        credentials: 'same-origin'
       })
       .then(response => {
         return new Promise((resolve, reject) => {
@@ -110,16 +116,16 @@ class RSVP extends Component {
             reject(new Error('non 200 status code'))
           }
           response
-            .json()
+            .text()
             .then(data => resolve(data))
             .catch(err => reject(err))
         })
       })
       .then(data => {
-        this.setState({ success: true })
+        this.setState({ success: true, rsvpComplete: true, loading: false })
       })
       .catch(() => {
-        this.setState({ error: this.props.t('sendError') })
+        this.setState({ error: this.props.t('sendError'), rsvpComplete: false, loading: false })
       })
   };
 
@@ -164,6 +170,7 @@ class RSVP extends Component {
                           type='radio'
                           name={`radio-${index}`}
                           checked={guest.attending === true}
+                          required
                           onChange={() => {
                             this.updateGuest(guest.name, 'attending', true)
                           }}
@@ -177,6 +184,7 @@ class RSVP extends Component {
                           type='radio'
                           name={`radio-${index}`}
                           checked={guest.attending === false}
+                          required
                           onChange={() => {
                             this.updateGuest(guest.name, 'attending', false)
                           }}
@@ -261,7 +269,9 @@ class RSVP extends Component {
                   id='emailInput'
                   value={this.state.email}
                   onChange={e => {
-                    this.setState({ email: e.target.value })
+                    if (!this.state.rsvpComplete) {
+                      this.setState({ email: e.target.value })
+                    }
                   }}
                   placeholder={t('emailPlaceholder')}
                 />
@@ -280,12 +290,19 @@ class RSVP extends Component {
                   placeholder={t('messagePlaceholder')}
                   value={this.state.message}
                   onChange={e => {
-                    this.setState({ message: e.target.value })
+                    if (!this.state.rsvpComplete) {
+                      this.setState({ message: e.target.value })
+                    }
                   }}
                 />
               </Col>
             </FormGroup>
-            {!this.state.rsvpComplete && (
+            {this.state.loading && (
+              <Button block>
+                <span className='spinny'>⏳</span>
+              </Button>
+            )}
+            {!this.state.rsvpComplete && !this.state.loading && (
               <Button block type='submit'>
                 {t('send')}
               </Button>

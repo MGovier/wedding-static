@@ -70,3 +70,12 @@ address {
 
 .rsvp:before { bottom: -5px; left: 0; right: 0; height: 5px; }
 .rsvp:after { left: -5px; top: 0; bottom: 0; width: 5px; }
+
+.spinny {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
