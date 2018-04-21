@@ -7,9 +7,7 @@ import '../style/Custom.css'
 
 class IndexPage extends PureComponent {
   render () {
-    return (
-      <UserManager image={this.props.data.rsvpImage} />
-    )
+    return <UserManager image={this.props.data.rsvpImage} />
   }
 }
 

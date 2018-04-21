@@ -11,10 +11,11 @@ class UserManager extends PureComponent {
     }
   }
   setStatus = (logIn, d = {}) => {
-    this.setState({loggedIn: logIn, data: d})
-  }
+    this.setState({ loggedIn: logIn, data: d })
+  };
   componentDidMount () {
-    window.fetch(process.env.API_URL + 'rsvp', { credentials: 'same-origin' })
+    window
+      .fetch(process.env.API_URL + 'rsvp', { credentials: 'same-origin' })
       .then(response => {
         return new Promise((resolve, reject) => {
           if (response.status !== 200) {
@@ -37,7 +38,12 @@ class UserManager extends PureComponent {
     return (
       <div>
         <div className='main-container'>
-          <LogIn loggedIn={this.state.loggedIn} data={this.state.data} image={this.props.image} setStatus={this.setStatus} />
+          <LogIn
+            loggedIn={this.state.loggedIn}
+            data={this.state.data}
+            image={this.props.image}
+            setStatus={this.setStatus}
+          />
           {this.state.loggedIn && <RSVP data={this.state.data} />}
         </div>
       </div>

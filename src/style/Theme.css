@@ -486,6 +486,12 @@ section.rsvp .input-row {
   section.rsvp {
     height: 22em;
   }
+  section.rsvp#logged-in {
+    height: 10em;
+  }
+  section.rsvp#logged-in .row {
+    padding-top: 3em;
+  }
 }
 /*!---------- FOOTER ----------*/
 .footer {

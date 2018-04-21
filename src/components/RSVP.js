@@ -29,7 +29,7 @@ class RSVP extends Component {
     rsvpComplete: false,
     message: '',
     loading: false
-  };
+  }
 
   componentWillMount () {
     this.prepareState(this.props)
@@ -66,7 +66,7 @@ class RSVP extends Component {
       names: props.data.names,
       day: props.data.day
     })
-  };
+  }
 
   updateGuest = (name, field, value) => {
     if (this.state.rsvpComplete) {
@@ -88,26 +88,30 @@ class RSVP extends Component {
         ...state
       }
     })
-  };
+  }
 
   submitRSVP = e => {
+    e.preventDefault()
     if (this.state.loading) {
       // Don't send again if we're waiting for server resp.
       return
     }
-    e.preventDefault()
     if (!this.validateState()) {
       this.setState({ error: this.props.t('missingField') })
       return
     }
-    this.setState({loading: true})
+    this.setState({ loading: true })
     window
       .fetch(process.env.API_URL + 'rsvp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ guests: this.state.guests, email: this.state.email, message: this.state.message }),
+        body: JSON.stringify({
+          guests: this.state.guests,
+          email: this.state.email,
+          message: this.state.message
+        }),
         credentials: 'same-origin'
       })
       .then(response => {
@@ -125,9 +129,13 @@ class RSVP extends Component {
         this.setState({ success: true, rsvpComplete: true, loading: false })
       })
       .catch(() => {
-        this.setState({ error: this.props.t('sendError'), rsvpComplete: false, loading: false })
+        this.setState({
+          error: this.props.t('sendError'),
+          rsvpComplete: false,
+          loading: false
+        })
       })
-  };
+  }
 
   validateState = () => {
     const guests = this.state.guests
@@ -141,7 +149,7 @@ class RSVP extends Component {
       }
     }
     return true
-  };
+  }
 
   render () {
     const { t } = this.props
@@ -302,11 +310,12 @@ class RSVP extends Component {
                 <span className='spinny'>⏳</span>
               </Button>
             )}
-            {!this.state.rsvpComplete && !this.state.loading && (
-              <Button block type='submit'>
-                {t('send')}
-              </Button>
-            )}
+            {!this.state.rsvpComplete &&
+              !this.state.loading && (
+                <Button block type='submit'>
+                  {t('send')}
+                </Button>
+              )}
           </Form>
           {this.state.error !== '' && (
             <Row>

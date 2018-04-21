@@ -5,7 +5,13 @@ import { translate } from 'react-i18next'
 class Hero extends PureComponent {
   runAnimation () {
     const NUM_CONFETTI = 30
-    const COLOURS = ['99,00,00', 'FF,66,00', 'FF,99,00', '99,66,33', 'CC,99,66']
+    const COLOURS = [
+      '99,00,00',
+      'FF,66,00',
+      'FF,99,00',
+      '99,66,33',
+      'CC,99,66'
+    ]
     const canvas = document.getElementById('header-animation')
     const context = canvas.getContext('2d')
     let width = canvas.width

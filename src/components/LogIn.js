@@ -4,25 +4,23 @@ import Img from 'gatsby-image'
 import { translate } from 'react-i18next'
 
 class LogIn extends PureComponent {
-  constructor (props) {
-    super(props)
-    this.state = {
-      code: ''
-    }
+  state = {
+    code: ''
   }
   updateCode = e => {
-    this.setState({code: e.target.value})
+    this.setState({ code: e.target.value })
   }
   submitCode = e => {
     e.preventDefault()
-    window.fetch(process.env.API_URL + 'auth', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ code: this.state.code }),
-      credentials: 'include'
-    })
+    window
+      .fetch(process.env.API_URL + 'auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code: this.state.code }),
+        credentials: 'same-origin'
+      })
       .then(response => {
         return new Promise((resolve, reject) => {
           if (response.status !== 200) {
@@ -35,7 +33,7 @@ class LogIn extends PureComponent {
         })
       })
       .then(data => {
-        this.setState({code: ''})
+        this.setState({ code: '' })
         this.props.setStatus(true, data)
       })
       .catch(() => {
@@ -46,13 +44,16 @@ class LogIn extends PureComponent {
   animateFailure = () => {
     document.getElementById('log-in-row').className += ' shake'
     setTimeout(() => {
-      document.getElementById('log-in-row').className = document.getElementById('log-in-row').className.replace(/ shake/g, '')
+      document.getElementById('log-in-row').className = document
+        .getElementById('log-in-row')
+        .className.replace(/ shake/g, '')
     }, 2000)
   }
   logOut = () => {
-    window.fetch(process.env.API_URL + 'auth', {
-      method: 'DELETE'
-    })
+    window
+      .fetch(process.env.API_URL + 'auth', {
+        method: 'DELETE'
+      })
       .then(response => {
         return new Promise((resolve, reject) => {
           if (response.status !== 200) {
@@ -90,11 +91,7 @@ class LogIn extends PureComponent {
           <Img sizes={image.sizes} className='background-image' />
           <Container>
             <Row className='justify-content-center'>
-              <Col
-                className='align-self-center text-center-if-small'
-                sm={{ size: 9 }}
-                xs={{ size: 12 }}
-              >
+              <Col className='align-self-center text-center-if-small' sm={{ size: 9 }} xs={{ size: 12 }}>
                 <h3>Hey {this.friendlyNames()}!</h3>
               </Col>
               <Col className='align-self-center' sm='3' xs='12'>

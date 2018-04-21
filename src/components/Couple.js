@@ -9,19 +9,14 @@ import MerlinPortrait from '../img/merlin-min.jpg'
 import BirgitPortrait from '../img/bir-min.jpg'
 
 class Couple extends PureComponent {
-  constructor () {
-    super()
-    this.getTimescale = this.getTimescale.bind(this)
-  }
-
-  getTimescale () {
+  getTimescale = () => {
     if (this.props.i18n.language === 'nl') {
       moment.locale('nl')
     } else {
       moment.locale('en-gb')
     }
     return moment([2018, 9, 15]).fromNow()
-  }
+  };
 
   render () {
     const { t } = this.props

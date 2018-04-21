@@ -78,7 +78,7 @@ class Venue extends PureComponent {
               </p>
             </Col>
           </Row>
-          <Row className='align-items-center'>
+          <Row>
             <Col md='4' xs='6'>
               <img
                 src={eastington}
