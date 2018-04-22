@@ -37,7 +37,7 @@ class UserManager extends PureComponent {
   render () {
     return (
       <div>
-        <div className='main-container'>
+        <div className='main-container' id='rsvp'>
           <LogIn
             loggedIn={this.state.loggedIn}
             data={this.state.data}

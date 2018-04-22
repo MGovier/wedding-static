@@ -52,7 +52,8 @@ class LogIn extends PureComponent {
   logOut = () => {
     window
       .fetch(process.env.API_URL + 'auth', {
-        method: 'DELETE'
+        method: 'DELETE',
+        credentials: 'same-origin'
       })
       .then(response => {
         return new Promise((resolve, reject) => {
