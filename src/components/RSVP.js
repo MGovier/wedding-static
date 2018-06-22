@@ -217,7 +217,9 @@ class RSVP extends Component {
                           <option value='' disabled>
                             {t('chooseOption')}
                           </option>
-                          <option value='Haddock fishcake with creamed leeks'>{t('fishcakes')}</option>
+                          <option value='Haddock fishcake with creamed leeks'>
+                            {t('fishcakes')}
+                          </option>
                           <option value='Garlic wild mushroom brioche (v)'>{t('mushroom')}</option>
                         </Input>
                       </span>

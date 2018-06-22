@@ -92,7 +92,11 @@ class LogIn extends PureComponent {
           <Img sizes={image.sizes} className='background-image' />
           <Container>
             <Row className='justify-content-center'>
-              <Col className='align-self-center text-center-if-small' sm={{ size: 9 }} xs={{ size: 12 }}>
+              <Col
+                className='align-self-center text-center-if-small'
+                sm={{ size: 9 }}
+                xs={{ size: 12 }}
+              >
                 <h3>Hey {this.friendlyNames()}!</h3>
               </Col>
               <Col className='align-self-center' sm='3' xs='12'>

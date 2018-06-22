@@ -1,10 +1,5 @@
 import React, { PureComponent } from 'react'
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  withScriptjs
-} from 'react-google-maps'
+import { withGoogleMap, GoogleMap, Marker, withScriptjs } from 'react-google-maps'
 
 import mapStyle from '../constants/mapStyle.json'
 import marker from '../img/weddingicon.png'

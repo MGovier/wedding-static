@@ -12,7 +12,7 @@ class UserManager extends PureComponent {
   }
   setStatus = (logIn, d = {}) => {
     this.setState({ loggedIn: logIn, data: d })
-  };
+  }
   componentDidMount () {
     window
       .fetch(process.env.API_URL + 'rsvp', { credentials: 'same-origin' })
