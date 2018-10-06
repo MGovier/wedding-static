@@ -32,7 +32,7 @@ class Couple extends PureComponent {
           </Row>
           <Row className='justify-content-around'>
             <Col md={{ size: 3 }} xs={{ size: 12 }}>
-              <h5 className='event-emoji'>👰🏻</h5>
+              <h5 className='event-emoji'><span role='img' aria-label='Bride'>👰🏻</span></h5>
               <h5 className='time-heading'>12:30</h5>
               <p style={{ textAlign: 'center', verticalAlign: 'middle' }}>{t('ceremony')}</p>
             </Col>
@@ -43,7 +43,7 @@ class Couple extends PureComponent {
               <img alt='Portrait of Merlin' className='merly' src={MerlinPortrait} />
             </Col>
             <Col md={{ size: 3 }} xs={{ size: 12 }}>
-              <h5 className='event-emoji'>🎉</h5>
+              <h5 className='event-emoji'><span role='img' aria-label='Celebrate'>🎉</span></h5>
               <h5 className='time-heading'>19:00</h5>
               <p style={{ textAlign: 'center', verticalAlign: 'middle' }}>{t('party')}</p>
             </Col>

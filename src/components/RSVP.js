@@ -31,23 +31,16 @@ class RSVP extends Component {
     loading: false
   }
 
-  componentWillMount () {
-    this.prepareState(this.props)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.prepareState(nextProps)
-  }
-
-  prepareState = props => {
+  static getDerivedStateFromProps (props) {
     let guests = []
+    let newState = {}
     if (props.data.hasOwnProperty('guests')) {
-      this.setState({
+      newState = {
         rsvpComplete: true,
         guests: props.data.guests,
         email: props.data.email,
         message: props.data.message
-      })
+      }
     } else {
       props.data.names.forEach(name => {
         guests.push({
@@ -57,15 +50,17 @@ class RSVP extends Component {
           main: ''
         })
       })
-      this.setState({
+      newState = {
         rsvpComplete: false,
         guests
-      })
+      }
     }
-    this.setState({
+    newState = {
+      ...newState,
       names: props.data.names,
       day: props.data.day
-    })
+    }
+    return newState
   }
 
   updateGuest = (name, field, value) => {
@@ -309,15 +304,15 @@ class RSVP extends Component {
             </FormGroup>
             {this.state.loading && (
               <Button block>
-                <span className='spinny'>⏳</span>
+                <span className='spinny' role='img' aria-label='Hourglass'>⏳</span>
               </Button>
             )}
             {!this.state.rsvpComplete &&
               !this.state.loading && (
-                <Button block type='submit'>
-                  {t('send')}
-                </Button>
-              )}
+              <Button block type='submit'>
+                {t('send')}
+              </Button>
+            )}
           </Form>
           {this.state.error !== '' && (
             <Row>

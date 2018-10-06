@@ -71,7 +71,7 @@ class Header extends PureComponent {
               this.closeNav()
             }}
           >
-            🇳🇱 Nederlands
+            <span role='img' aria-label='Dutch flag'>🇳🇱</span> Nederlands
           </Button>
         </NavItem>
       )
@@ -87,7 +87,7 @@ class Header extends PureComponent {
               this.closeNav()
             }}
           >
-            🇬🇧 English
+            <span role='img' aria-label='British flag'>🇬🇧</span> English
           </Button>
         </NavItem>
       )
